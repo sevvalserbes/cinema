@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_movie_card"
+        app:cardCornerRadius="4dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout_movies_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_movie_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintBottom_toBottomOf="@id/constraint_layout_movies_info_container"
+                app:layout_constraintDimensionRatio="2:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/constraint_layout_movies_info_container"
+                app:srcCompat="@drawable/image_placeholder" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_movie_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:fontFamily="@font/quicksand_bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_view_movie_poster"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                tools:text="Joker" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_movie_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/colorAccentLight"
+                android:textSize="15sp"
+                app:fontFamily="@font/quicksand_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_view_movie_poster"
+                app:layout_constraintTop_toBottomOf="@id/text_view_movie_title"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Crime, Drama, Thriller " />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_movie_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/image_view_movie_poster"
+                app:layout_constraintTop_toBottomOf="@id/text_view_movie_genre"
+                app:srcCompat="@drawable/ic_calendar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_movie_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/quicksand_medium"
+                android:textColor="@color/colorAccentLight"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/image_view_movie_calendar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/image_view_movie_calendar"
+                app:layout_constraintTop_toTopOf="@id/image_view_movie_calendar"
+                tools:text="04.11.2019" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/background_movie_rate"
+                android:drawableStart="@drawable/ic_star"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="6dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:fontFamily="@font/quicksand_semibold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/text_view_movie_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/text_view_movie_date"
+                tools:text="8.9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
+
+
