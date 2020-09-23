@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewBinding"
+            type="com.ss.cinema.domain.viewbinding.MovieViewBinding" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
+                app:imageUrl="@{viewBinding.posterImageUrl}"
                 app:layout_constraintBottom_toBottomOf="@id/constraint_layout_movies_info_container"
                 app:layout_constraintDimensionRatio="2:3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +46,7 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
+                android:text="@{viewBinding.originalTitle}"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:fontFamily="@font/quicksand_bold"
@@ -55,6 +64,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
+                android:text="@{viewBinding.genres}"
                 android:textColor="@color/colorAccentLight"
                 android:textSize="15sp"
                 app:fontFamily="@font/quicksand_medium"
@@ -83,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/quicksand_medium"
+                android:text="@{viewBinding.releaseDate}"
                 android:textColor="@color/colorAccentLight"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/image_view_movie_calendar"
@@ -103,6 +114,7 @@
                 android:includeFontPadding="false"
                 android:paddingStart="6dp"
                 android:paddingEnd="10dp"
+                android:text="@{viewBinding.voteAverage}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:fontFamily="@font/quicksand_semibold"

@@ -1,8 +1,19 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('/Users/serbes/AndroidStudioProjects/cinema/keystores/keystore')
+            storePassword '-T51l01'
+            keyPassword '-T51l01'
+            keyAlias 'key0'
+            //TODO: Hide sensitive information
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -33,6 +44,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "TMDB_API_KEY", "\"" + getTmdbApiKey() + "\"")
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -45,6 +58,21 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.4'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.0'
+    implementation 'com.google.dagger:hilt-android:2.28.3-alpha'
+    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+
+    kapt 'com.google.dagger:hilt-android-compiler:2.28.3-alpha'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
+
+    annotationProcessor 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
@@ -52,4 +80,16 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+}
+
+kapt {
+    correctErrorTypes true
+}
+
+def getTmdbApiKey() {
+    def keysFile = file("keys.properties")
+    def keysProperties = new Properties()
+    keysProperties.load(new FileInputStream(keysFile))
+    def tmdbApiKey = keysProperties['TMDB_API_KEY']
+    return tmdbApiKey
 }
