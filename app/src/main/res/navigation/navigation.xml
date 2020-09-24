@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/moviesFragment">
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.ss.cinema.ui.movies.MoviesFragment"
+        android:label="MoviesFragment"
+        tools:layout="@layout/fragment_movies" />
+    <fragment
+        android:id="@+id/tvSeriesFragment"
+        android:name="com.ss.cinema.ui.tvseries.TvSeriesFragment"
+        android:label="TvSeriesFragment"
+        tools:layout="@layout/fragment_tv_series" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.ss.cinema.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search" />
+</navigation>

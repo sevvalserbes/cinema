@@ -20,4 +20,8 @@
         <item name="fontFamily">@font/pacifico_regular</item>
     </style>
 
+    <style name="BottomNavigationItemTextAppearance" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/quicksand_semibold</item>
+    </style>
+
 </resources>

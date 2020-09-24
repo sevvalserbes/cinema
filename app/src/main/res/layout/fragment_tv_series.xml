@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_tv_series_title"
+            style="@style/TitleTextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:includeFontPadding="false"
+            android:text="@string/tv_series"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <View
+            android:id="@+id/view_border"
+            android:layout_width="0dp"
+            android:layout_height="4dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintBottom_toTopOf="@id/recycler_view_tv_series"
+            app:layout_constraintEnd_toEndOf="@id/text_view_tv_series_title"
+            app:layout_constraintStart_toStartOf="@id/text_view_tv_series_title"
+            app:layout_constraintTop_toBottomOf="@id/text_view_tv_series_title"
+            app:layout_constraintVertical_bias="0" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_tv_series"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_border"
+            tools:listitem="@layout/list_item_movie" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

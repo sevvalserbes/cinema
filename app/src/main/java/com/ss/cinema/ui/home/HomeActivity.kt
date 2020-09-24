@@ -3,6 +3,8 @@ package com.ss.cinema.ui.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.ss.cinema.R
 import com.ss.cinema.databinding.ActivityHomeBinding
 import com.ss.cinema.ui.movies.MoviesFragment
@@ -16,17 +18,11 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        initViewPager()
+        setButtomNavigationBar()
     }
 
-    private fun initViewPager() {
-        val fragment = MoviesFragment.newInstance()
-        supportFragmentManager
-            .beginTransaction()
-            .run {
-                add(R.id.frame_layout_container, fragment)
-                commit()
-            }
-        return
+    fun setButtomNavigationBar() {
+        val navController = findNavController(R.id.fragment_nav_host)
+        binding.bottomNavigationView.setupWithNavController(navController)
     }
 }
