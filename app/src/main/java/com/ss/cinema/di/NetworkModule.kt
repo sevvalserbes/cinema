@@ -1,5 +1,7 @@
 package com.ss.cinema.di
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.ss.cinema.data.remote.RequestInterceptor
 import com.ss.cinema.data.remote.api.MovieService
 import dagger.Module
 import dagger.Provides
@@ -17,12 +19,14 @@ object NetworkModule {
     @Provides
     fun provideOkHttpClient(): OkHttpClient =
         OkHttpClient.Builder()
+            .addInterceptor(RequestInterceptor())
+            .addNetworkInterceptor(StethoInterceptor())
             .build()
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("https://api.trendyol.com/")
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(okHttpClient)
