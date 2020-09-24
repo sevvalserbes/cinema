@@ -13,14 +13,15 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_movie_card"
+        android:theme="@style/Theme.MaterialComponents"
         app:cardCornerRadius="4dp"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_layout_movies_info_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/background_movie_card">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view_movie_poster"
@@ -34,7 +35,7 @@
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/constraint_layout_movies_info_container"
-                app:srcCompat="@drawable/image_placeholder" />
+                tools:src="@drawable/image_placeholder" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_movie_title"

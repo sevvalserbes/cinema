@@ -1,46 +1,48 @@
 package com.ss.cinema.ui.movies
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ss.cinema.R
-import com.ss.cinema.databinding.ItemMovieBinding
+import com.ss.cinema.databinding.ListItemMovieBinding
 import com.ss.cinema.domain.model.Movie
 import com.ss.cinema.domain.viewbinding.MovieViewBinding
-import com.ss.cinema.util.BaseViewHolder
-import com.ss.cinema.util.extensions.inflate
 import javax.inject.Inject
 
-class MovieAdapter @Inject constructor() : RecyclerView.Adapter<BaseViewHolder<Movie>>() {
+class MovieAdapter @Inject constructor() :
+    ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
-    private var movies: List<Movie> = listOf()
-
-    fun setData(data: List<Movie>) {
-        this.movies = data
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Movie> {
-        val binding = parent.inflate<ItemMovieBinding>(
-            R.layout.item_movie,
-            false
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ListItemMovieBinding.inflate(layoutInflater, parent, false)
         return MovieViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<Movie>, position: Int) {
-        holder.bind(movies[position])
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val item = getItem(position)
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
-
-    class MovieViewHolder(private val binding: ItemMovieBinding) :
-        BaseViewHolder<Movie>(binding.root) {
-        override fun bind(item: Movie) {
+    class MovieViewHolder(private val binding: ListItemMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Movie) {
             with(binding) {
                 viewBinding = MovieViewBinding(item)
+                executePendingBindings()
             }
         }
+    }
+
+    class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
+
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
+        }
+
     }
 }

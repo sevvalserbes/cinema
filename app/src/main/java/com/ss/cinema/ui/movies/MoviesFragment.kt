@@ -17,12 +17,11 @@ class MoviesFragment : Fragment() {
         fun newInstance(): MoviesFragment = MoviesFragment()
     }
 
-    private val viewModel by viewModels<MoviesViewModel>()
-
-    private lateinit var binding: FragmentMoviesBinding
-
     @Inject
     lateinit var movieAdapter: MovieAdapter
+
+    private lateinit var binding: FragmentMoviesBinding
+    private val viewModel by viewModels<MoviesViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,7 +43,7 @@ class MoviesFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
-            movieAdapter.setData(movies)
+            movieAdapter.submitList(movies)
         }
     }
 }
