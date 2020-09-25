@@ -1,34 +1,34 @@
-package com.ss.cinema.ui.movies
+package com.ss.cinema.ui.tvseries
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ss.cinema.data.Resource
 import com.ss.cinema.data.map
-import com.ss.cinema.domain.model.Movie
-import com.ss.cinema.domain.usecase.FetchPopularMoviesUseCase
+import com.ss.cinema.domain.model.TvSeries
+import com.ss.cinema.domain.usecase.FetchPopularTvSeriesUseCase
 import com.ss.cinema.util.ReactiveViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
-class MoviesViewModel @ViewModelInject constructor(
-    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
+class TvSeriesViewModel @ViewModelInject constructor(
+    private val fetchPopularTvSeriesUseCase: FetchPopularTvSeriesUseCase
 ) : ReactiveViewModel() {
 
     init {
-        fetchPopularMovies()
+        fetchPopularTvSeries()
     }
 
-    private val _movies = MutableLiveData<List<Movie>>()
-    val movies: LiveData<List<Movie>>
-        get() = _movies
+    private val _tvSeries = MutableLiveData<List<TvSeries>>()
+    val tvSeries: LiveData<List<TvSeries>>
+        get() = _tvSeries
 
-    private fun fetchPopularMovies() {
-        fetchPopularMoviesUseCase.fetchPopularMovies()
+    private fun fetchPopularTvSeries() {
+        fetchPopularTvSeriesUseCase.fetchPopularTvSeries()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { resource ->
                 if (resource is Resource.Success) {
                     resource.map {
-                        _movies.value = it
+                        _tvSeries.value = it
                     }
                 }
             }

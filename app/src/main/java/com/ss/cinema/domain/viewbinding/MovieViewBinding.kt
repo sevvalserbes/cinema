@@ -11,5 +11,5 @@ class MovieViewBinding(private val movie: Movie) {
 
     fun getVoteAverage() = movie.voteAverage.toString()
 
-    fun getReleaseDate() = movie.releaseDate // need operation
+    fun getReleaseDate() = movie.releaseDate
 }
