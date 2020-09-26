@@ -32,4 +32,8 @@ class SearchViewModel @ViewModelInject constructor(
                 disposable.add(it)
             }
     }
+
+    fun onSearchViewCloseIconClick() {
+        _searchResult.value = listOf()
+    }
 }

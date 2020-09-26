@@ -6,8 +6,9 @@ import com.ss.cinema.data.repository.SearchRepository
 import com.ss.cinema.domain.mapper.MultiSearchMapper
 import com.ss.cinema.domain.model.MultiSearch
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class FetchMultiSearchResultUseCase(
+class FetchMultiSearchResultUseCase @Inject constructor(
     private val searchRepository: SearchRepository,
     private val multiSearchMapper: MultiSearchMapper
 ) {

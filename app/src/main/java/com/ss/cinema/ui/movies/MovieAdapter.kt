@@ -43,6 +43,5 @@ class MovieAdapter @Inject constructor() :
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem == newItem
         }
-
     }
 }

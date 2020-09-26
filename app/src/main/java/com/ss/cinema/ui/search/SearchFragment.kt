@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.ss.cinema.databinding.FragmentSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Observable
@@ -22,10 +23,10 @@ class SearchFragment : Fragment() {
     }
 
     @Inject
-    private lateinit var viewModel: SearchViewModel
+    lateinit var searchAdapter: SearchAdapter
 
     private lateinit var binding: FragmentSearchBinding
-
+    private val viewModel by viewModels<SearchViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +36,9 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater)
         val view = binding.root
         initSearchViewOnQueryListener()
+        initSearchViewOnCloseListener()
+        initSearchAdapter()
+        subscribeUi()
         return view
     }
 
@@ -57,10 +61,28 @@ class SearchFragment : Fragment() {
                 queryValue.toLowerCase(Locale.getDefault()).trim()
             }
             .debounce(250, TimeUnit.MILLISECONDS)
-            .distinct()
             .filter { queryValue -> queryValue.length > 2 }
             .subscribe { queryValue ->
                 viewModel.fetchMultiSearchResult(queryValue)
             }
+    }
+
+    private fun initSearchViewOnCloseListener() {
+        binding.searchView.setOnCloseListener {
+            viewModel.onSearchViewCloseIconClick()
+            false
+        }
+    }
+
+    private fun initSearchAdapter() {
+        binding.recyclerViewSearchItems.apply {
+            adapter = searchAdapter
+        }
+    }
+
+    private fun subscribeUi() {
+        viewModel.searchResult.observe(viewLifecycleOwner) { searchResult ->
+            searchAdapter.submitList(searchResult)
+        }
     }
 }

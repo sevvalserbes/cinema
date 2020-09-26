@@ -1,5 +1,6 @@
 package com.ss.cinema.util
 
+import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -17,5 +18,11 @@ object BindingAdapter {
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .placeholder(R.drawable.image_placeholder)
             .into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter("icon")
+    fun setDrawable(imageView: AppCompatImageView, @DrawableRes drawableRes: Int) {
+        imageView.setImageResource(drawableRes)
     }
 }
