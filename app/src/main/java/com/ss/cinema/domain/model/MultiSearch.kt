@@ -4,7 +4,7 @@ import com.ss.cinema.util.MediaType
 
 data class MultiSearch(
     val id: Int,
-    val mediaType: MediaType,
+    var mediaType: MediaType,
     val posterPath: String,
     val profilePath: String,
     val originalTitle: String,

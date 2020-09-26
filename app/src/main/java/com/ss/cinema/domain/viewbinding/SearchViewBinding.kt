@@ -19,7 +19,7 @@ class SearchViewBinding(private val multiSearch: MultiSearch) {
         return when (multiSearch.mediaType) {
             MediaType.MOVIE, MediaType.TV -> multiSearch.posterPath
             MediaType.PERSON -> multiSearch.profilePath
-            MediaType.UNKNOWN -> "Unknown"
+            MediaType.UNKNOWN -> ""
         }
     }
 
@@ -28,7 +28,7 @@ class SearchViewBinding(private val multiSearch: MultiSearch) {
             MediaType.MOVIE -> R.drawable.ic_movie
             MediaType.TV -> R.drawable.ic_tv
             MediaType.PERSON -> R.drawable.ic_person
-            else -> R.drawable.ic_unknown
+            MediaType.UNKNOWN -> R.drawable.ic_unknown
         }
     }
 }
