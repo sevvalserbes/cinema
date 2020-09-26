@@ -13,7 +13,6 @@ class MovieMapper @Inject constructor() :
                 id = movieResponse.id ?: 0,
                 originalTitle = movieResponse.originalTitle.orEmpty(),
                 posterPath = movieResponse.posterPath.orEmpty(),
-                genreIds = movieResponse.genreIds.orEmpty(), //TODO: Do not return genre IDs, return a list of genres instead
                 voteAverage = movieResponse.voteAverage ?: 0,
                 releaseDate = movieResponse.releaseDate.orEmpty()
             )

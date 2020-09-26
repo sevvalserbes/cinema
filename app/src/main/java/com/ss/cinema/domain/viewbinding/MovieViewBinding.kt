@@ -7,8 +7,6 @@ class MovieViewBinding(private val movie: Movie) {
 
     fun getPosterImageUrl() = movie.posterPath
 
-    fun getGenres() = movie.genreIds.toString() // need operation
-
     fun getVoteAverage() = movie.voteAverage.toString()
 
     fun getReleaseDate() = movie.releaseDate
