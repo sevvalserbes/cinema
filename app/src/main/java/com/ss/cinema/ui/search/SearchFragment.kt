@@ -4,9 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.ss.cinema.databinding.FragmentSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.ObservableOnSubscribe
+import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -15,7 +21,11 @@ class SearchFragment : Fragment() {
         fun newInstance() = SearchFragment()
     }
 
+    @Inject
+    private lateinit var viewModel: SearchViewModel
+
     private lateinit var binding: FragmentSearchBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +34,33 @@ class SearchFragment : Fragment() {
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater)
         val view = binding.root
+        initSearchViewOnQueryListener()
         return view
+    }
+
+    private fun initSearchViewOnQueryListener() {
+        Observable
+            .create(ObservableOnSubscribe<String> { subscriber ->
+                binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        subscriber.onNext(query)
+                        return false
+                    }
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        subscriber.onNext(newText)
+                        return false
+                    }
+                })
+            })
+            .map { queryValue ->
+                queryValue.toLowerCase(Locale.getDefault()).trim()
+            }
+            .debounce(250, TimeUnit.MILLISECONDS)
+            .distinct()
+            .filter { queryValue -> queryValue.length > 2 }
+            .subscribe { queryValue ->
+                viewModel.fetchMultiSearchResult(queryValue)
+            }
     }
 }

@@ -3,6 +3,7 @@ package com.ss.cinema.di
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.ss.cinema.data.remote.RequestInterceptor
 import com.ss.cinema.data.remote.api.MovieService
+import com.ss.cinema.data.remote.api.SearchService
 import com.ss.cinema.data.remote.api.TvSeriesService
 import dagger.Module
 import dagger.Provides
@@ -40,6 +41,11 @@ object NetworkModule {
 
     @Provides
     fun provideTvSeriesService(retrofit: Retrofit): TvSeriesService {
+        return retrofit.create()
+    }
+
+    @Provides
+    fun provideSearchSeriesService(retrofit: Retrofit): SearchService {
         return retrofit.create()
     }
 }
