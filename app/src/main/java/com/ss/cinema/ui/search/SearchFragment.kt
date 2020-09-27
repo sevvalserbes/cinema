@@ -94,6 +94,8 @@ class SearchFragment : Fragment(), SearchHandler {
     }
 
     override fun onTvSeriesItemClick(tvSeriesId: Int) {
-        TODO("Not yet implemented")
+        val directions =
+            SearchFragmentDirections.actionSearchFragmentToTvSeriesDetailFragment(tvSeriesId)
+        findNavController().navigate(directions)
     }
 }

@@ -13,6 +13,12 @@ import javax.inject.Inject
 class TvSeriesAdapter @Inject constructor() :
     ListAdapter<TvSeries, TvSeriesAdapter.TvSeriesViewHolder>(TvSeriesDiffCallback()) {
 
+    private lateinit var tvSeriesHandler: TvSeriesHandler
+
+    fun setTvSeriesHandler(handler: TvSeriesHandler) {
+        tvSeriesHandler = handler
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvSeriesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemTvSeriesBinding.inflate(layoutInflater, parent, false)
@@ -21,14 +27,15 @@ class TvSeriesAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: TvSeriesViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, tvSeriesHandler)
     }
 
     class TvSeriesViewHolder(private val binding: ListItemTvSeriesBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: TvSeries) {
+        fun bind(item: TvSeries, tvSeriesHandler: TvSeriesHandler) {
             with(binding) {
                 viewBinding = TvSeriesViewBinding(item)
+                handler = tvSeriesHandler
                 executePendingBindings()
             }
         }

@@ -18,7 +18,11 @@
         android:id="@+id/tvSeriesFragment"
         android:name="com.ss.cinema.ui.tvseries.TvSeriesFragment"
         android:label="TvSeriesFragment"
-        tools:layout="@layout/fragment_tv_series" />
+        tools:layout="@layout/fragment_tv_series" >
+        <action
+            android:id="@+id/action_tvSeriesFragment_to_tvSeriesDetailFragment"
+            app:destination="@id/tvSeriesDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.ss.cinema.ui.search.SearchFragment"
@@ -27,6 +31,9 @@
         <action
             android:id="@+id/action_searchFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_tvSeriesDetailFragment"
+            app:destination="@id/tvSeriesDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -37,5 +44,15 @@
             android:name="movieId"
             android:defaultValue="1"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvSeriesDetailFragment"
+        android:name="com.ss.cinema.ui.tvseriesdetail.TvSeriesDetailFragment"
+        android:label="TvSeriesDetailFragment"
+        tools:layout="@layout/fragment_tv_series_detail">
+        <argument
+            android:name="tvSeriesId"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>

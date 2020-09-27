@@ -14,6 +14,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class TvSeriesDetailViewModel @ViewModelInject constructor(
     private val fetchTvSeriesDetailUseCase: FetchTvSeriesDetailUseCase
 ) : ReactiveViewModel() {
+
     private val _tvSeriesDetail = MutableLiveData<TvSeriesDetail>()
     val tvSeriesDetail: LiveData<TvSeriesDetail>
         get() = _tvSeriesDetail

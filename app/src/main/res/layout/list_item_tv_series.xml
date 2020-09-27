@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="handler"
+            type="com.ss.cinema.ui.tvseries.TvSeriesHandler" />
+
+        <variable
             name="viewBinding"
             type="com.ss.cinema.domain.viewbinding.TvSeriesViewBinding" />
     </data>
@@ -14,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents"
+        android:onClick="@{() -> handler.onTvSeriesClick(viewBinding.id)}"
         app:cardCornerRadius="8dp"
         app:cardUseCompatPadding="true">
 
@@ -63,7 +68,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/background_movie_vote_items"
+                android:background="@drawable/background_vote_items"
                 android:drawableStart="@drawable/ic_star"
                 android:drawablePadding="4dp"
                 android:gravity="center_vertical"

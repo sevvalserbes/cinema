@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ss.cinema.databinding.FragmentTvSeriesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TvSeriesFragment : Fragment() {
+class TvSeriesFragment : Fragment(), TvSeriesHandler {
 
     companion object {
         fun newInstance() = TvSeriesFragment()
@@ -36,6 +37,7 @@ class TvSeriesFragment : Fragment() {
     }
 
     private fun initPopularTvSeriesAdapter() {
+        tvSeriesAdapter.setTvSeriesHandler(this)
         binding.recyclerViewTvSeries.apply {
             adapter = tvSeriesAdapter
         }
@@ -45,5 +47,11 @@ class TvSeriesFragment : Fragment() {
         viewModel.tvSeries.observe(viewLifecycleOwner) { tvSeries ->
             tvSeriesAdapter.submitList(tvSeries)
         }
+    }
+
+    override fun onTvSeriesClick(tvSeriesId: Int) {
+        val directions =
+            TvSeriesFragmentDirections.actionTvSeriesFragmentToTvSeriesDetailFragment(tvSeriesId)
+        findNavController().navigate(directions)
     }
 }
