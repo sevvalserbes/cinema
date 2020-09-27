@@ -17,7 +17,6 @@ class MovieViewBindingTest {
             id = 0,
             originalTitle = "Memento",
             posterPath = "posterPath",
-            genreIds = listOf<Int>(),
             voteAverage = 9.3,
             releaseDate = "releaseDate"
         )

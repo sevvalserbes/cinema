@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewBinding"
+            type="com.ss.cinema.domain.viewbinding.MovieDetailViewBinding" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_movie_detail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_backdrop_height"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_movie_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_movie_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{viewBinding.posterPath}"
+                    app:layout_collapseMode="parallax"
+                    tools:src="@drawable/image_placeholder" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view_movie_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/view_movie_detail_border"
+                    android:layout_width="0dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/background_view_movie_detail_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_movie_detail_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="@{viewBinding.originalTitle}"
+                    android:textColor="@color/white"
+                    android:textSize="36sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_movie_detail_border"
+                    app:layout_constraintVertical_bias="0"
+                    tools:text="Deadpool" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_movie_detail_vote_average"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/background_movie_vote_items"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{viewBinding.voteAverage}"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_star"
+                    app:fontFamily="@font/quicksand_semibold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/text_view_movie_detail_vote_count"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@id/text_view_movie_detail_title"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_movie_detail_title"
+                    app:layout_constraintVertical_bias="0"
+                    tools:text="8.9" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_movie_detail_vote_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/background_movie_vote_items"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@{viewBinding.voteCount}"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:fontFamily="@font/quicksand_semibold"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_movie_detail_vote_average"
+                    app:layout_constraintEnd_toEndOf="@id/text_view_movie_detail_title"
+                    app:layout_constraintStart_toEndOf="@id/text_view_movie_detail_vote_average"
+                    app:layout_constraintTop_toTopOf="@id/text_view_movie_detail_vote_average"
+                    tools:text="6543 votes" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_movie_detail_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/background_movie_detail_time_items"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:text="@{viewBinding.releaseYear}"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:fontFamily="@font/quicksand_semibold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/text_view_movie_detail_duration"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@id/text_view_movie_detail_title"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_movie_detail_vote_count"
+                    app:layout_constraintVertical_bias="0"
+                    tools:text="2020" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_movie_detail_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/background_movie_detail_time_items"
+                    android:drawablePadding="4dp"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="8dp"
+                    android:text="@{viewBinding.runtime}"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:drawableStartCompat="@drawable/ic_timer"
+                    app:fontFamily="@font/quicksand_semibold"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_movie_detail_year"
+                    app:layout_constraintEnd_toEndOf="@id/text_view_movie_detail_title"
+                    app:layout_constraintStart_toEndOf="@id/text_view_movie_detail_year"
+                    app:layout_constraintTop_toTopOf="@id/text_view_movie_detail_year"
+                    tools:text="90 min." />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/quicksand_light"
+                    android:lineSpacingExtra="6sp"
+                    android:text="@{viewBinding.overview}"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_movie_detail_duration"
+                    tools:text="Deadpool tells the origin story of former Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life." />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

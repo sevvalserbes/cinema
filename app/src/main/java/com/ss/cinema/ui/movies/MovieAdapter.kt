@@ -13,6 +13,12 @@ import javax.inject.Inject
 class MovieAdapter @Inject constructor() :
     ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
+    private lateinit var movieHandler: MovieHandler
+
+    fun setMovieHandler(handler: MovieHandler) {
+        movieHandler = handler
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemMovieBinding.inflate(layoutInflater, parent, false)
@@ -21,14 +27,15 @@ class MovieAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, movieHandler)
     }
 
     class MovieViewHolder(private val binding: ListItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Movie) {
+        fun bind(item: Movie, movieHandler: MovieHandler) {
             with(binding) {
                 viewBinding = MovieViewBinding(item)
+                handler = movieHandler
                 executePendingBindings()
             }
         }

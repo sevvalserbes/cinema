@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class TvSeriesFragment : Fragment() {
+
     companion object {
         fun newInstance() = TvSeriesFragment()
     }

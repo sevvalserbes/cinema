@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ss.cinema.databinding.FragmentMoviesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MoviesFragment : Fragment() {
+class MoviesFragment : Fragment(), MovieHandler {
 
     companion object {
         fun newInstance(): MoviesFragment = MoviesFragment()
@@ -36,6 +37,7 @@ class MoviesFragment : Fragment() {
     }
 
     private fun initPopularMovieAdapter() {
+        movieAdapter.setMovieHandler(this)
         binding.recyclerViewMovies.apply {
             adapter = movieAdapter
         }
@@ -45,5 +47,10 @@ class MoviesFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner) { movies ->
             movieAdapter.submitList(movies)
         }
+    }
+
+    override fun onMovieClick(movieId: Int) {
+        val directions = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(movieId)
+        findNavController().navigate(directions)
     }
 }

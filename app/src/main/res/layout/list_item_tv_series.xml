@@ -63,7 +63,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="12dp"
-                android:background="@drawable/background_movie_rate"
+                android:background="@drawable/background_movie_vote_items"
                 android:drawableStart="@drawable/ic_star"
                 android:drawablePadding="4dp"
                 android:gravity="center_vertical"
