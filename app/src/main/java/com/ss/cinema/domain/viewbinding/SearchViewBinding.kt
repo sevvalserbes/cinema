@@ -8,6 +8,8 @@ class SearchViewBinding(private val multiSearch: MultiSearch) {
 
     fun getId(): Int = multiSearch.id
 
+    fun getMediaType() = multiSearch.mediaType
+
     fun getName(): String {
         return when (multiSearch.mediaType) {
             MediaType.MOVIE -> multiSearch.originalTitle

@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents"
-        android:onClick="@{() -> handler.onMovieItemClick(viewBinding.id)}"
+        android:onClick="@{() -> handler.onSearchItemClick(viewBinding.id, viewBinding.mediaType)}"
         app:cardCornerRadius="4dp"
         app:cardUseCompatPadding="true">
 

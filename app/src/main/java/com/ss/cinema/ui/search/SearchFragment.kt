@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ss.cinema.databinding.FragmentSearchBinding
+import com.ss.cinema.util.MediaType
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
@@ -88,14 +89,18 @@ class SearchFragment : Fragment(), SearchHandler {
         }
     }
 
-    override fun onMovieItemClick(movieId: Int) {
-        val directions = SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(movieId)
-        findNavController().navigate(directions)
-    }
-
-    override fun onTvSeriesItemClick(tvSeriesId: Int) {
-        val directions =
-            SearchFragmentDirections.actionSearchFragmentToTvSeriesDetailFragment(tvSeriesId)
-        findNavController().navigate(directions)
+    override fun onSearchItemClick(itemId: Int, mediaType: MediaType) {
+        when (mediaType) {
+            MediaType.MOVIE -> {
+                val directions =
+                    SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(itemId)
+                findNavController().navigate(directions)
+            }
+            MediaType.TV -> {
+                val directions =
+                    SearchFragmentDirections.actionSearchFragmentToTvSeriesDetailFragment(itemId)
+                findNavController().navigate(directions)
+            }
+        }
     }
 }

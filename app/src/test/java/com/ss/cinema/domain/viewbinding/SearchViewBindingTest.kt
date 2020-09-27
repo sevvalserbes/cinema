@@ -36,6 +36,26 @@ class SearchViewBindingTest {
     }
 
     @Test
+    fun `given SearchViewBinding is created, when media type is MOVIE, then MOVIE media type`() {
+        // Given
+        multiSearch!!.mediaType = MediaType.MOVIE
+        val searchViewBinding = SearchViewBinding(multiSearch!!)
+
+        // Then
+        assertEquals(MediaType.MOVIE, searchViewBinding.getMediaType())
+    }
+
+    @Test
+    fun `given SearchViewBinding is created, when media type is TV, then TV media type`() {
+        // Given
+        multiSearch!!.mediaType = MediaType.TV
+        val searchViewBinding = SearchViewBinding(multiSearch!!)
+
+        // Then
+        assertEquals(MediaType.TV, searchViewBinding.getMediaType())
+    }
+
+    @Test
     fun `given SearchViewBinding is created, when media type is MOVIE, then get originalTitle`() {
         // Given
         multiSearch!!.mediaType = MediaType.MOVIE
