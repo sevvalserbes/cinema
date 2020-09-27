@@ -1,8 +1,8 @@
-package com.ss.cinema.domain.viewbinding
+package com.ss.cinema.domain.viewstate
 
 import com.ss.cinema.domain.model.TvSeriesDetail
 
-class TvSeriesDetailViewBinding(private val tvSeriesDetail: TvSeriesDetail) {
+class TvSeriesDetailViewState(private val tvSeriesDetail: TvSeriesDetail) {
     fun getOriginalName() = tvSeriesDetail.originalName
 
     fun getOverview() = tvSeriesDetail.overview

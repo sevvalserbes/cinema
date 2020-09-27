@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.ss.cinema.databinding.FragmentTvSeriesDetailBinding
-import com.ss.cinema.domain.viewbinding.TvSeriesDetailViewBinding
+import com.ss.cinema.domain.viewstate.TvSeriesDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +37,7 @@ class TvSeriesDetailFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.tvSeriesDetail.observe(viewLifecycleOwner) {
-            binding.viewBinding = TvSeriesDetailViewBinding(it)
+            binding.viewState = TvSeriesDetailViewState(it)
         }
     }
 }

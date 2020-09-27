@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.cinema.databinding.ListItemTvSeriesBinding
 import com.ss.cinema.domain.model.TvSeries
-import com.ss.cinema.domain.viewbinding.TvSeriesViewBinding
+import com.ss.cinema.domain.viewstate.TvSeriesViewState
 import javax.inject.Inject
 
 class TvSeriesAdapter @Inject constructor() :
@@ -34,7 +34,7 @@ class TvSeriesAdapter @Inject constructor() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: TvSeries, tvSeriesHandler: TvSeriesHandler) {
             with(binding) {
-                viewBinding = TvSeriesViewBinding(item)
+                viewState = TvSeriesViewState(item)
                 handler = tvSeriesHandler
                 executePendingBindings()
             }

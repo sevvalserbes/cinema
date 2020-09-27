@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.ss.cinema.databinding.FragmentMovieDetailBinding
-import com.ss.cinema.domain.viewbinding.MovieDetailViewBinding
+import com.ss.cinema.domain.viewstate.MovieDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +23,7 @@ class MovieDetailFragment : Fragment() {
     private val args: MovieDetailFragmentArgs by navArgs()
 
     private lateinit var binding: FragmentMovieDetailBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +41,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.movieDetail.observe(viewLifecycleOwner) {
-            binding.viewBinding = MovieDetailViewBinding(it)
+            binding.viewState = MovieDetailViewState(it)
         }
     }
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.cinema.databinding.ListItemSearchBinding
 import com.ss.cinema.domain.model.MultiSearch
-import com.ss.cinema.domain.viewbinding.SearchViewBinding
+import com.ss.cinema.domain.viewstate.SearchViewState
 import javax.inject.Inject
 
 class SearchAdapter @Inject constructor() :
@@ -34,7 +34,7 @@ class SearchAdapter @Inject constructor() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MultiSearch, searchHandler: SearchHandler) {
             with(binding) {
-                viewBinding = SearchViewBinding(item)
+                viewState = SearchViewState(item)
                 handler = searchHandler
                 executePendingBindings()
             }

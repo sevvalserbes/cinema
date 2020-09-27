@@ -1,10 +1,10 @@
-package com.ss.cinema.domain.viewbinding
+package com.ss.cinema.domain.viewstate
 
 import com.ss.cinema.R
 import com.ss.cinema.domain.model.MultiSearch
 import com.ss.cinema.util.MediaType
 
-class SearchViewBinding(private val multiSearch: MultiSearch) {
+class SearchViewState(private val multiSearch: MultiSearch) {
 
     fun getId(): Int = multiSearch.id
 

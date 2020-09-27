@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.cinema.databinding.ListItemMovieBinding
 import com.ss.cinema.domain.model.Movie
-import com.ss.cinema.domain.viewbinding.MovieViewBinding
+import com.ss.cinema.domain.viewstate.MovieViewState
 import javax.inject.Inject
 
 class MovieAdapter @Inject constructor() :
@@ -34,7 +34,7 @@ class MovieAdapter @Inject constructor() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Movie, movieHandler: MovieHandler) {
             with(binding) {
-                viewBinding = MovieViewBinding(item)
+                viewState = MovieViewState(item)
                 handler = movieHandler
                 executePendingBindings()
             }

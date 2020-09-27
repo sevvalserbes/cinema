@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="viewBinding"
-            type="com.ss.cinema.domain.viewbinding.TvSeriesDetailViewBinding" />
+            name="viewState"
+            type="com.ss.cinema.domain.viewstate.TvSeriesDetailViewState" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -38,7 +38,7 @@
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
                     android:scaleType="fitCenter"
-                    app:imageUrl="@{viewBinding.posterPath}"
+                    app:imageUrl="@{viewState.posterPath}"
                     app:layout_collapseMode="parallax"
                     tools:src="@drawable/image_placeholder" />
 
@@ -78,7 +78,7 @@
                     android:fontFamily="@font/quicksand_bold"
                     android:gravity="center"
                     android:includeFontPadding="false"
-                    android:text="@{viewBinding.originalName}"
+                    android:text="@{viewState.originalName}"
                     android:textColor="@color/white"
                     android:textSize="36sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -100,7 +100,7 @@
                     android:includeFontPadding="false"
                     android:paddingStart="6dp"
                     android:paddingEnd="10dp"
-                    android:text="@{viewBinding.voteAverage}"
+                    android:text="@{viewState.voteAverage}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:drawableStartCompat="@drawable/ic_star"
@@ -121,7 +121,7 @@
                     android:background="@drawable/background_vote_items"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
-                    android:text="@{viewBinding.voteCount}"
+                    android:text="@{viewState.voteCount}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:fontFamily="@font/quicksand_semibold"
@@ -139,7 +139,7 @@
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/quicksand_light"
                     android:lineSpacingExtra="6sp"
-                    android:text="@{viewBinding.overview}"
+                    android:text="@{viewState.overview}"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"

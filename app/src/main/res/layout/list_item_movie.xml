@@ -10,15 +10,15 @@
             type="com.ss.cinema.ui.movies.MovieHandler" />
 
         <variable
-            name="viewBinding"
-            type="com.ss.cinema.domain.viewbinding.MovieViewBinding" />
+            name="viewState"
+            type="com.ss.cinema.domain.viewstate.MovieViewState" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents"
-        android:onClick="@{() -> handler.onMovieClick(viewBinding.id)}"
+        android:onClick="@{() -> handler.onMovieClick(viewState.id)}"
         app:cardCornerRadius="4dp"
         app:cardUseCompatPadding="true">
 
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
-                app:imageUrl="@{viewBinding.posterImageUrl}"
+                app:imageUrl="@{viewState.posterImageUrl}"
                 app:layout_constraintBottom_toBottomOf="@id/constraint_layout_movies_info_container"
                 app:layout_constraintDimensionRatio="2:3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="@{viewBinding.originalTitle}"
+                android:text="@{viewState.originalTitle}"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:fontFamily="@font/quicksand_bold"
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/quicksand_medium"
-                android:text="@{viewBinding.releaseDate}"
+                android:text="@{viewState.releaseDate}"
                 android:textColor="@color/colorAccentLight"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/image_view_movie_calendar"
@@ -103,7 +103,7 @@
                 android:includeFontPadding="false"
                 android:paddingStart="6dp"
                 android:paddingEnd="10dp"
-                android:text="@{viewBinding.voteAverage}"
+                android:text="@{viewState.voteAverage}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:fontFamily="@font/quicksand_semibold"

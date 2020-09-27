@@ -1,9 +1,9 @@
-package com.ss.cinema.domain.viewbinding
+package com.ss.cinema.domain.viewstate
 
 import com.ss.cinema.domain.model.MovieDetail
 import com.ss.cinema.util.extensions.yearToString
 
-class MovieDetailViewBinding(private val movieDetail: MovieDetail) {
+class MovieDetailViewState(private val movieDetail: MovieDetail) {
 
     fun getOriginalTitle() = movieDetail.originalTitle
 

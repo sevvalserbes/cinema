@@ -10,15 +10,15 @@
             type="com.ss.cinema.ui.search.SearchHandler" />
 
         <variable
-            name="viewBinding"
-            type="com.ss.cinema.domain.viewbinding.SearchViewBinding" />
+            name="viewState"
+            type="com.ss.cinema.domain.viewstate.SearchViewState" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents"
-        android:onClick="@{() -> handler.onSearchItemClick(viewBinding.id, viewBinding.mediaType)}"
+        android:onClick="@{() -> handler.onSearchItemClick(viewState.id, viewState.mediaType)}"
         app:cardCornerRadius="4dp"
         app:cardUseCompatPadding="true">
 
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
-                app:imageUrl="@{viewBinding.imageUrl}"
+                app:imageUrl="@{viewState.imageUrl}"
                 app:layout_constraintBottom_toBottomOf="@id/constraint_layout_search_info_container"
                 app:layout_constraintDimensionRatio="2:3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="@{viewBinding.name}"
+                android:text="@{viewState.name}"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:fontFamily="@font/quicksand_bold"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
-                app:icon="@{viewBinding.icon}"
+                app:icon="@{viewState.icon}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"

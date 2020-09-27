@@ -1,8 +1,8 @@
-package com.ss.cinema.domain.viewbinding
+package com.ss.cinema.domain.viewstate
 
 import com.ss.cinema.domain.model.Movie
 
-class MovieViewBinding(private val movie: Movie) {
+class MovieViewState(private val movie: Movie) {
 
     fun getId() = movie.id
 

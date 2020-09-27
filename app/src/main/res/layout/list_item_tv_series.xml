@@ -10,15 +10,15 @@
             type="com.ss.cinema.ui.tvseries.TvSeriesHandler" />
 
         <variable
-            name="viewBinding"
-            type="com.ss.cinema.domain.viewbinding.TvSeriesViewBinding" />
+            name="viewState"
+            type="com.ss.cinema.domain.viewstate.TvSeriesViewState" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents"
-        android:onClick="@{() -> handler.onTvSeriesClick(viewBinding.id)}"
+        android:onClick="@{() -> handler.onTvSeriesClick(viewState.id)}"
         app:cardCornerRadius="8dp"
         app:cardUseCompatPadding="true">
 
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                app:imageUrl="@{viewBinding.posterImageUrl}"
+                app:imageUrl="@{viewState.posterImageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="W, 1:0.7"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
                 android:ellipsize="end"
                 android:includeFontPadding="false"
                 android:maxLines="1"
-                android:text="@{viewBinding.originalName}"
+                android:text="@{viewState.originalName}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:fontFamily="@font/quicksand_bold"
@@ -75,7 +75,7 @@
                 android:includeFontPadding="false"
                 android:paddingStart="6dp"
                 android:paddingEnd="10dp"
-                android:text="@{viewBinding.voteAverage}"
+                android:text="@{viewState.voteAverage}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:fontFamily="@font/quicksand_semibold"
