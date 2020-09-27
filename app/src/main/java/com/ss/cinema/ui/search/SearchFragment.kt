@@ -20,10 +20,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SearchFragment : Fragment(), SearchHandler {
 
-    companion object {
-        fun newInstance() = SearchFragment()
-    }
-
     @Inject
     lateinit var searchAdapter: SearchAdapter
 

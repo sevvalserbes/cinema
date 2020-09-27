@@ -14,10 +14,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class TvSeriesFragment : Fragment(), TvSeriesHandler {
 
-    companion object {
-        fun newInstance() = TvSeriesFragment()
-    }
-
     @Inject
     lateinit var tvSeriesAdapter: TvSeriesAdapter
 

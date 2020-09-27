@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ss.cinema.R
 import com.ss.cinema.databinding.ActivityHomeBinding
-import com.ss.cinema.ui.movies.MoviesFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,10 +17,10 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-        setButtomNavigationBar()
+        setBottomNavigationBar()
     }
 
-    fun setButtomNavigationBar() {
+    private fun setBottomNavigationBar() {
         val navController = findNavController(R.id.fragment_nav_host)
         binding.bottomNavigationView.setupWithNavController(navController)
     }

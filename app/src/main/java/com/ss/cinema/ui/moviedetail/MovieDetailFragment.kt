@@ -14,10 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MovieDetailFragment()
-    }
-
     private val viewModel by viewModels<MovieDetailViewModel>()
 
     private val args: MovieDetailFragmentArgs by navArgs()

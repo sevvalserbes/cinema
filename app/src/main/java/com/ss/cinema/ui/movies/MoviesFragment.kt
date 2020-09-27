@@ -14,10 +14,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MoviesFragment : Fragment(), MovieHandler {
 
-    companion object {
-        fun newInstance(): MoviesFragment = MoviesFragment()
-    }
-
     @Inject
     lateinit var movieAdapter: MovieAdapter
 
