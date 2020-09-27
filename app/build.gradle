@@ -6,15 +6,6 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    signingConfigs {
-        config {
-            storeFile file('/Users/serbes/AndroidStudioProjects/cinema/keystores/keystore')
-            storePassword '-T51l01'
-            keyPassword '-T51l01'
-            keyAlias 'key0'
-            //TODO: Hide sensitive information
-        }
-    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -46,7 +37,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "TMDB_API_KEY", "\"" + getTmdbApiKey() + "\"")
-            signingConfig signingConfigs.config
         }
 
         debug {
