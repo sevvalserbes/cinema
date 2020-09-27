@@ -27,6 +27,15 @@ class SearchViewBindingTest {
     }
 
     @Test
+    fun `given SearchViewBinding is created, then get id`() {
+        // Given
+        val searchViewBinding = SearchViewBinding(multiSearch!!)
+
+        // Then
+        assertEquals(0, searchViewBinding.getId())
+    }
+
+    @Test
     fun `given SearchViewBinding is created, when media type is MOVIE, then get originalTitle`() {
         // Given
         multiSearch!!.mediaType = MediaType.MOVIE

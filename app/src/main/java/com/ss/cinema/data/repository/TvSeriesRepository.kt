@@ -3,6 +3,7 @@ package com.ss.cinema.data.repository
 import com.ss.cinema.data.Resource
 import com.ss.cinema.data.remote.api.TvSeriesService
 import com.ss.cinema.data.remote.response.BaseResponse
+import com.ss.cinema.data.remote.response.TvSeriesDetailResponse
 import com.ss.cinema.data.remote.response.TvSeriesResponse
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -17,5 +18,14 @@ class TvSeriesRepository @Inject constructor(private val tvSeriesService: TvSeri
             }.onErrorReturn {
                 Resource.Error(it)
             }.subscribeOn(Schedulers.io())
+    }
+
+    fun fetchTvSeriesDetail(tvSeriesId: Int): Single<Resource<TvSeriesDetailResponse>> {
+        return tvSeriesService.fetchTvSeriesDetail(tvSeriesId)
+            .map<Resource<TvSeriesDetailResponse>> {
+                Resource.Success(it)
+            }.onErrorReturn {
+                Resource.Error(it)
+            }
     }
 }
