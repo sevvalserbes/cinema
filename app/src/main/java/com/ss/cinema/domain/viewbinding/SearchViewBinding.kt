@@ -6,6 +6,8 @@ import com.ss.cinema.util.MediaType
 
 class SearchViewBinding(private val multiSearch: MultiSearch) {
 
+    fun getId(): Int = multiSearch.id
+
     fun getName(): String {
         return when (multiSearch.mediaType) {
             MediaType.MOVIE -> multiSearch.originalTitle

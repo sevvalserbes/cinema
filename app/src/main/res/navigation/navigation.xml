@@ -23,7 +23,11 @@
         android:id="@+id/searchFragment"
         android:name="com.ss.cinema.ui.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.ss.cinema.ui.moviedetail.MovieDetailFragment"

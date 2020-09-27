@@ -13,6 +13,12 @@ import javax.inject.Inject
 class SearchAdapter @Inject constructor() :
     ListAdapter<MultiSearch, SearchAdapter.MultiSearchViewHolder>(MultiSearchDiffCallback()) {
 
+    private lateinit var searchHandler: SearchHandler
+
+    fun setSearchHandler(handler: SearchHandler) {
+        searchHandler = handler
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MultiSearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemSearchBinding.inflate(layoutInflater, parent, false)
@@ -21,14 +27,15 @@ class SearchAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: MultiSearchViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, searchHandler)
     }
 
     class MultiSearchViewHolder(private val binding: ListItemSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: MultiSearch) {
+        fun bind(item: MultiSearch, searchHandler: SearchHandler) {
             with(binding) {
                 viewBinding = SearchViewBinding(item)
+                handler = searchHandler
                 executePendingBindings()
             }
         }

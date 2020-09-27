@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.ss.cinema.databinding.FragmentSearchBinding
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Observable
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), SearchHandler {
 
     companion object {
         fun newInstance() = SearchFragment()
@@ -75,6 +76,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initSearchAdapter() {
+        searchAdapter.setSearchHandler(this)
         binding.recyclerViewSearchItems.apply {
             adapter = searchAdapter
         }
@@ -84,5 +86,14 @@ class SearchFragment : Fragment() {
         viewModel.searchResult.observe(viewLifecycleOwner) { searchResult ->
             searchAdapter.submitList(searchResult)
         }
+    }
+
+    override fun onMovieItemClick(movieId: Int) {
+        val directions = SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(movieId)
+        findNavController().navigate(directions)
+    }
+
+    override fun onTvSeriesItemClick(tvSeriesId: Int) {
+        TODO("Not yet implemented")
     }
 }
