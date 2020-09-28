@@ -71,7 +71,7 @@ The search result includes three types of items: movies, TV series and people. T
 ![](https://media.giphy.com/media/lx7oJP8V7yyK7IQMvf/giphy.gif) ![](https://media.giphy.com/media/FkCOCECMcG4zLtEwdG/giphy.gif)
 
 
-## Some of the questions this project might be answering
+## Some of the questions this project might have the answers for
 
 ### How to inject a ViewModel that has parameters in its constructor to a fragment?
 
