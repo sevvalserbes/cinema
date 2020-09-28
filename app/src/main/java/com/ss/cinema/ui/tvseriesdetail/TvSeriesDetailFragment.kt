@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -28,6 +29,7 @@ class TvSeriesDetailFragment : Fragment() {
         binding = FragmentTvSeriesDetailBinding.inflate(inflater)
         fetchTvSeriesDetail()
         subscribeUi()
+        initCheckBoxOnClick()
         return binding.root
     }
 
@@ -38,6 +40,20 @@ class TvSeriesDetailFragment : Fragment() {
     private fun subscribeUi() {
         viewModel.tvSeriesDetail.observe(viewLifecycleOwner) {
             binding.viewState = TvSeriesDetailViewState(it)
+        }
+    }
+
+    private fun initCheckBoxOnClick() {
+        with(binding.checkboxTvSeriesDetail) {
+            setOnClickListener {
+                if (this.isChecked) {
+                    Toast.makeText(
+                        context,
+                        "Added to the watchlist!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 }

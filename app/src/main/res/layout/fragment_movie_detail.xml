@@ -40,6 +40,10 @@
                     android:scaleType="fitCenter"
                     app:imageUrl="@{viewState.posterPath}"
                     app:layout_collapseMode="parallax"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/image_placeholder" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -191,6 +195,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox_movie_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="16dp"
+            android:button="@drawable/checkbox_like" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
