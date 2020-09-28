@@ -17,6 +17,8 @@ In your file, set your API key:
 TMDB_API_KEY=YOUR_API_KEY
 ```
 
+*I read Yuichi Fujiki's [article](https://medium.com/@yfujiki/how-to-store-use-sensitive-information-in-android-development-bc352892ece7) and followed Step 1 to hide the sensitive data in the app in a **keys.properties** file.* 
+
 ## What's in it?
 ### Architecture
 
@@ -128,7 +130,7 @@ override fun onMovieClick(movieId: Int) {
         findNavController().navigate(directions)
     }
 ```
-When an action is added in the graph, Safe Args generates a class for the destination where the action **originates** and adds "Directions" at the end of the class. Because our action originates from MoviesFragment, a **MoviesFragmentDirections** class is generated. This class generates a funtion according to the action id. To navigate between destinations, a **NavController** object is needed. By calling one of the overloads of the **navigate** (in our case, we add directions as a parameter), we can navigate to the desired destination.
+When an action is added to the graph, Safe Args generates a class for the destination where the action **originates** and adds "Directions" at the end of the class. Because our action originates from MoviesFragment, a **MoviesFragmentDirections** class is generated. This class generates a funtion according to the action id. To navigate between destinations, a **NavController** object is needed. By calling one of the overloads of the **navigate** (in our case, we add directions as a parameter), we can navigate to the desired destination.
 
 For each destination that is a recipient of an argument, Safe Args generates a class and adds "Args" at the end of the class. In our case, MovieDetailFragment is our recipient. By adding the code below, you can access the arguments of the MovieDetailFragment.
 
@@ -141,7 +143,7 @@ class MovieDetailFragment : Fragment() {
     ...
 }
 ```
-For further reading: [Navigate to a destination](https://developer.android.com/guide/navigation/navigation-navigate), [Pass data between destinations](https://developer.android.com/guide/navigation/navigation-pass-data)
+For further information: [Navigate to a destination](https://developer.android.com/guide/navigation/navigation-navigate), [Pass data between destinations](https://developer.android.com/guide/navigation/navigation-pass-data)
 
 ## Coulda/Woulda/Shoulda
 
