@@ -69,6 +69,40 @@ The search result includes three types of items: movies, TV series and people. T
 ![](https://media.giphy.com/media/lx7oJP8V7yyK7IQMvf/giphy.gif) ![](https://media.giphy.com/media/FkCOCECMcG4zLtEwdG/giphy.gif)
 
 
+## What answers you can find in this project?
+
+### How to inject a ViewModel that has parameters in its constructors to a fragment?
+
+Thanks to **Hilt** and and [**Fragment KTX**](https://developer.android.com/kotlin/ktx#fragment), this can be achieved effortlessly. Assuming you already have set up Hilt for your app, you should add Fragment KTX dependency:
+```
+dependencies {
+    implementation "androidx.fragment:fragment-ktx:<latest-version>"
+}
+```
+Then, you add **@ViewModelInject** annotation to your ViewModel's constructor. Here is an example from the project:
+```
+class MoviesViewModel @ViewModelInject constructor(
+    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
+)
+```
+Later, you can get an instance of your ViewModel in your fragment like this:
+
+```
+@AndroidEntryPoint
+class MoviesFragment : Fragment() {
+
+    private val viewModel by viewModels<MoviesViewModel>()
+    
+    ...
+}
+```
+
+Make sure:
+- Your fragment is annotated with **@AndroidEntryPoint** 
+- The activity that hosts your fragment is annotated with **@AndroidEntryPoint**
+- *Hilt currently only supports activities that extend ComponentActivity and fragments that extend androidx library Fragment*. So check whether your activities or fragments provide the requirements.
+- For further information: [Hilt and Jetpack integrations](https://developer.android.com/training/dependency-injection/hilt-jetpack), [Hilt Gradle Setup](https://dagger.dev/hilt/gradle-setup)
+
 ## Coulda/Woulda/Shoulda
 
 Here, I point out what could be done differently. I also treat this part as a TO-DO list so that I can get back to these subjects for improvement.  
