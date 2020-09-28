@@ -52,13 +52,13 @@ The project has a single-activity architecture and uses MVVM architectural patte
 
 Movie screen displays the latest popular movies. This screen is also the starting point of the app. When user clicks on a movie on the list, Movie Detail screen fetches the related movie information and displays it.
 
-![](https://media.giphy.com/media/zEkFFVGiVzKAKakURU/giphy.gif) ![](https://media.giphy.com/media/79wZhWlaj1AZ3cllvD/giphy.gif)
+![](https://media.giphy.com/media/zEkFFVGiVzKAKakURU/giphy.gif) ![](https://media.giphy.com/media/Atk7VSj9Zxd4Hy8dsN/giphy.gif)
 
 ### TV Series and TV Series Detail screens
 
 TV Series screen displays the latest popular TV series. User is directed to the TV Series Detail screen in a similar way to the Movie Detail screen. 
 
-![](https://media.giphy.com/media/OS7DQRZPzykc1oiapd/giphy.gif) ![](https://media.giphy.com/media/hsc7L9HFSP5CZwc9x3/giphy.gif)
+![](https://media.giphy.com/media/OS7DQRZPzykc1oiapd/giphy.gif) ![](https://media.giphy.com/media/jeBbXB7gtlScj9xPwZ/giphy.gif)
 
 ### Search screen
 
@@ -66,7 +66,7 @@ Search screen is quite self explanatory. :blush: Users are allowed to make searc
 
 The search result includes three types of items: movies, TV series and people. These items can be distinguished according to the icons they have. When the user clicks on a movie item, the user is directed to the Movie Detail screen. If the user clicks on a TV series item, then the user will be directed to the TV Series Detail screen.
 
-![](https://media.giphy.com/media/lx7oJP8V7yyK7IQMvf/giphy.gif) ![](https://media.giphy.com/media/BF6YApRdNJhA5PAlfo/giphy.gif)
+![](https://media.giphy.com/media/lx7oJP8V7yyK7IQMvf/giphy.gif) ![](https://media.giphy.com/media/FkCOCECMcG4zLtEwdG/giphy.gif)
 
 
 ## Coulda/Woulda/Shoulda
@@ -76,6 +76,6 @@ Here, I point out what could be done differently. I also treat this part as a TO
 - [ ] I would've searched for the best practice for handling onClick events with Data Binding. I am not sure if creating Handler interfaces and adding adapters "setHandler" for setting the Handlers is the best practice.
 - [ ] I would've used another response instead of MultiSearch. There are three available response objects. I believe having one response for three of them is not the best way, seperation of concerns wise.
 - [ ] I could've added pagination. (Bonus: I could've used the Pagination library)
-- [ ] I could've added a Watchlist button and a Watchlist tab on the BottomNavigationView so that users can display the items they added to their Watchlist.
+- [ ] ~I could've added a Watchlist button~ and a Watchlist tab on the BottomNavigationView so that users can display the items they added to their Watchlist.
 - [ ] I should've preserved UI state. 
 - [ ] I would've written more unit tests covering the ViewModels and UseCases. But I am not the best at writing unit tests when asynchronous task are involved.
