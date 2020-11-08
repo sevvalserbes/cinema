@@ -1,6 +1,6 @@
 package com.ss.cinema.domain.model
 
-import com.ss.cinema.util.MediaType
+import com.ss.cinema.util.mediatype.MediaType
 
 data class MultiSearch(
     val id: Int,

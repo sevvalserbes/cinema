@@ -2,7 +2,7 @@ package com.ss.cinema.domain.viewstate
 
 import com.ss.cinema.R
 import com.ss.cinema.domain.model.MultiSearch
-import com.ss.cinema.util.MediaType
+import com.ss.cinema.util.mediatype.MediaType
 
 class SearchViewState(private val multiSearch: MultiSearch) {
 
