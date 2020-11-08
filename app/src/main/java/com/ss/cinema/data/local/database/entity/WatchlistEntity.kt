@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "watchlist_table")
-data class WatchlistItem(
+data class WatchlistEntity(
     @ColumnInfo(name = "watchlist_item_id") @PrimaryKey
     var id: Int = 0,
     @ColumnInfo(name = "watchlist_item_name")
