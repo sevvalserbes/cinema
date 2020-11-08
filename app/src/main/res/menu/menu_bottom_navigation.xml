@@ -13,4 +13,8 @@
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search_blue"
         android:title="@string/search" />
+    <item
+        android:id="@+id/watchlistFragment"
+        android:icon="@drawable/ic_watchlist"
+        android:title="@string/watchlist" />
 </menu>
