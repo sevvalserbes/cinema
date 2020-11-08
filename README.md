@@ -17,6 +17,8 @@ In your file, set your API key:
 TMDB_API_KEY=YOUR_API_KEY
 ```
 
+*I read Yuichi Fujiki's [article](https://medium.com/@yfujiki/how-to-store-use-sensitive-information-in-android-development-bc352892ece7) and followed Step 1 to hide the sensitive data in the app in a **keys.properties** file.* 
+
 ## What's in it?
 ### Architecture
 
@@ -69,9 +71,9 @@ The search result includes three types of items: movies, TV series and people. T
 ![](https://media.giphy.com/media/lx7oJP8V7yyK7IQMvf/giphy.gif) ![](https://media.giphy.com/media/FkCOCECMcG4zLtEwdG/giphy.gif)
 
 
-## What answers you can find in this project?
+## Some of the questions this project might have the answers for
 
-### How to inject a ViewModel that has parameters in its constructors to a fragment?
+### How to inject a ViewModel that has parameters in its constructor to a fragment?
 
 Thanks to **Hilt** and and [**Fragment KTX**](https://developer.android.com/kotlin/ktx#fragment), this can be achieved effortlessly. Assuming you already have set up Hilt for your app, you should add Fragment KTX dependency:
 ```
@@ -103,6 +105,46 @@ Make sure:
 - *Hilt currently only supports activities that extend ComponentActivity and fragments that extend androidx library Fragment*. So check whether your activities or fragments provide the requirements.
 - For further information: [Hilt and Jetpack integrations](https://developer.android.com/training/dependency-injection/hilt-jetpack), [Hilt Gradle Setup](https://dagger.dev/hilt/gradle-setup)
 
+### How to pass data between fragments while using the Navigation component?
+
+I got a little bit of help from a Navigation component Gradle plugin named **Safe Args** to achieve this. Following the instructions [here](https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args), you can Safe Args to your project.
+
+This is the navigation graph of the cinema app:
+
+<p align="center">
+  <img height="400" src="https://github.com/sevvalserbes/cinema/blob/master/art/movieDetail.png">
+</p>
+
+The arrows represent the actions between destinations. The highlighted arrows represent the actions between MovieDetailFragment and other fragments. Here, MovieDetailFragment is the destination. When the user clicks on the movie item on the list, whether in MoviesFragment or SearchFragment, the app should navigate to the MovieDetailFragment passing the id of the movie the user clicked on at the same time. 
+
+Because the MovieDetailFragment is the recipient of the movie id, a movieId value should be added to its arguments. When the MovieDetailFragment is selected on the navigation graph, **Arguments** show up on the **Attributes** panel. The following images show how to add an argument:
+
+<p align="center">
+    <img src="https://github.com/sevvalserbes/cinema/blob/master/art/arguments.png" height="200"> <img src="https://github.com/sevvalserbes/cinema/blob/master/art/add_argument.png" height="200">
+</p>
+
+Let's take a look at the code in the MoviesFragment. onMovieClick function is called when the user clicks on a movie item on the list.
+```
+override fun onMovieClick(movieId: Int) {
+        val directions = MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(movieId)
+        findNavController().navigate(directions)
+    }
+```
+When an action is added to the graph, Safe Args generates a class for the destination where the action **originates** and adds "Directions" at the end of the class. Because our action originates from MoviesFragment, a **MoviesFragmentDirections** class is generated. This class generates a funtion according to the action id. To navigate between destinations, a **NavController** object is needed. By calling one of the overloads of the **navigate** (in our case, we add directions as a parameter), we can navigate to the desired destination.
+
+For each destination that is a recipient of an argument, Safe Args generates a class and adds "Args" at the end of the class. In our case, MovieDetailFragment is our recipient. By adding the code below, you can access the arguments of the MovieDetailFragment.
+
+```
+@AndroidEntryPoint
+class MovieDetailFragment : Fragment() {
+
+    private val args: MovieDetailFragmentArgs by navArgs()
+    
+    ...
+}
+```
+For further information: [Navigate to a destination](https://developer.android.com/guide/navigation/navigation-navigate), [Pass data between destinations](https://developer.android.com/guide/navigation/navigation-pass-data)
+
 ## Coulda/Woulda/Shoulda
 
 Here, I point out what could be done differently. I also treat this part as a TO-DO list so that I can get back to these subjects for improvement.  
@@ -112,4 +154,4 @@ Here, I point out what could be done differently. I also treat this part as a TO
 - [ ] I could've added pagination. (Bonus: I could've used the Pagination library)
 - [ ] ~I could've added a Watchlist button~ and a Watchlist tab on the BottomNavigationView so that users can display the items they added to their Watchlist.
 - [ ] I should've preserved UI state. 
-- [ ] I would've written more unit tests covering the ViewModels and UseCases. But I am not the best at writing unit tests when asynchronous task are involved.
+- [ ] I would've written more unit tests covering the ViewModels and UseCases. But I don't have experience with writing unit tests when asynchronous task are involved.
