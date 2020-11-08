@@ -7,13 +7,11 @@ import com.ss.cinema.data.Resource
 import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.Movie
 import com.ss.cinema.domain.usecase.FetchPopularMoviesUseCase
-import com.ss.cinema.util.ReactiveViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class MoviesViewModel @ViewModelInject constructor(
     private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
-) : ReactiveViewModel() {
-
+) {
     init {
         fetchPopularMovies()
     }
@@ -31,9 +29,6 @@ class MoviesViewModel @ViewModelInject constructor(
                         _movies.value = it
                     }
                 }
-            }
-            .also {
-                disposable.add(it)
             }
     }
 }

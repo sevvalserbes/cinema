@@ -7,13 +7,11 @@ import com.ss.cinema.data.Resource
 import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.MovieDetail
 import com.ss.cinema.domain.usecase.FetchMovieDetailUseCase
-import com.ss.cinema.util.ReactiveViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class MovieDetailViewModel @ViewModelInject constructor(
     private val fetchMovieDetailUseCase: FetchMovieDetailUseCase
-) : ReactiveViewModel() {
-
+) {
     private val _movieDetail = MutableLiveData<MovieDetail>()
     val movieDetail: LiveData<MovieDetail>
         get() = _movieDetail
@@ -27,8 +25,6 @@ class MovieDetailViewModel @ViewModelInject constructor(
                         _movieDetail.value = it
                     }
                 }
-            }.also {
-                disposable.add(it)
             }
     }
 }

@@ -7,12 +7,11 @@ import com.ss.cinema.data.Resource
 import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.MultiSearch
 import com.ss.cinema.domain.usecase.FetchMultiSearchResultUseCase
-import com.ss.cinema.util.ReactiveViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class SearchViewModel @ViewModelInject constructor(
     private val fetchMultiSearchResultUseCase: FetchMultiSearchResultUseCase
-) : ReactiveViewModel() {
+) {
 
     private val _searchResult = MutableLiveData<List<MultiSearch>>()
     val searchResult: LiveData<List<MultiSearch>>
@@ -27,9 +26,6 @@ class SearchViewModel @ViewModelInject constructor(
                         _searchResult.value = it
                     }
                 }
-            }
-            .also {
-                disposable.add(it)
             }
     }
 
