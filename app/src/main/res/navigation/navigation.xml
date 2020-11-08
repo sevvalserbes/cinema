@@ -55,4 +55,9 @@
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.ss.cinema.ui.watchlist.WatchlistFragment"
+        android:label="WatchlistFragment"
+        tools:layout="@layout/fragment_watchlist"/>
 </navigation>
