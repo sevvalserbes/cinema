@@ -1,27 +1,27 @@
 package com.ss.cinema.data.local.database.dao
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
-import com.ss.cinema.data.local.database.entity.WatchlistItem
+import androidx.room.*
+import com.ss.cinema.data.local.database.entity.WatchlistEntity
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
 
 @Dao
 interface WatchlistDao {
 
-    @Insert
-    fun insert(watchlistItem: WatchlistItem)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(watchlistEntity: WatchlistEntity): Completable
 
     @Update
-    fun update(watchlistItem: WatchlistItem)
+    fun update(watchlistEntity: WatchlistEntity): Completable
 
+    @Transaction
     @Query(value = "SELECT * from watchlist_table WHERE watchlist_item_id = :key")
-    fun get(key: Long): WatchlistItem?
+    fun get(key: Long): Flowable<WatchlistEntity?>
 
     @Query("DELETE FROM watchlist_table")
     fun clear()
 
+    @Transaction
     @Query("SELECT * FROM watchlist_table")
-    fun getAllNights(): LiveData<List<WatchlistItem>>
+    fun getAllNights(): Flowable<List<WatchlistEntity>>
 }

@@ -1,13 +1,14 @@
 package com.ss.cinema.data.local.database
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.ss.cinema.data.local.database.dao.WatchlistDao
-import com.ss.cinema.data.local.database.entity.WatchlistItem
+import com.ss.cinema.data.local.database.entity.WatchlistEntity
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
@@ -17,6 +18,9 @@ class CinemaDatabaseTest {
 
     private lateinit var watchlistDao: WatchlistDao
     private lateinit var db: CinemaDatabase
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun createDb() {
@@ -37,33 +41,49 @@ class CinemaDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun insertAndGetWatchlistItem() {
-        val watchlistItem = WatchlistItem(
+        val watchlistItem = WatchlistEntity(
             1,
             "Matrix",
             "movie"
         )
-        watchlistDao.insert(watchlistItem)
-        val movie = watchlistDao.get(1)
-        assertEquals(movie?.name, "Matrix")
+        watchlistDao.insert(watchlistItem).blockingAwait()
+        watchlistDao.get(1)
+            .test()
+            .assertValue { it?.name == "Matrix" }
     }
 
 
     @Test
     @Throws(Exception::class)
     fun updateAndGetWatchlistItem() {
-        var movie = WatchlistItem(
+        var movie = WatchlistEntity(
             id = 2,
             name = "Memento",
             mediaType = "movie"
         )
-        watchlistDao.insert(movie)
-        movie = WatchlistItem(
+        watchlistDao.insert(movie).blockingAwait()
+        movie = WatchlistEntity(
             id = 2,
             name = "Shrek",
             mediaType = "movie"
         )
-        watchlistDao.update(movie)
-        val item = watchlistDao.get(2)
-        assertEquals(item?.name, "Shrek")
+        watchlistDao.update(movie).blockingAwait()
+        watchlistDao.get(2)
+            .test()
+            .assertValue { it?.name == "Shrek" }
+    }
+
+    @Test
+    fun deleteAndGetUser() {
+        val movie = WatchlistEntity(
+            id = 3,
+            name = "Memento",
+            mediaType = "movie"
+        )
+        watchlistDao.insert(movie).blockingAwait()
+        watchlistDao.clear()
+        watchlistDao.get(3)
+            .test()
+            .assertNoValues()
     }
 }
