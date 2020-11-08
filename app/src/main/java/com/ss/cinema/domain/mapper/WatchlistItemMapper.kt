@@ -9,7 +9,10 @@ class WatchlistItemMapper @Inject constructor(private val decider: MediaTypeDeci
     Mapper<List<WatchlistEntity>, List<WatchlistItem>> {
     override fun mapFrom(response: List<WatchlistEntity>): List<WatchlistItem> {
         return response.map {
-            WatchlistItem(it.name, decider.getMediaType(it.mediaType))
+            WatchlistItem(
+                id = it.id,
+                name = it.name,
+                mediaType = decider.getMediaType(it.mediaType))
         }
     }
 }
