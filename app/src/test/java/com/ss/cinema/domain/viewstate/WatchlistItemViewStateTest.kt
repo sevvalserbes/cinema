@@ -8,10 +8,10 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class WatchlistViewStateTest {
+class WatchlistItemViewStateTest {
 
     private var watchlistItem: WatchlistItem? = null
-    private var watchlistViewState: WatchlistViewState? = null
+    private var watchlistItemViewState: WatchlistItemViewState? = null
 
     @Before
     fun setUp() {
@@ -20,17 +20,17 @@ class WatchlistViewStateTest {
             name = "Matrix",
             mediaType = MediaType.MOVIE
         )
-        watchlistViewState = WatchlistViewState(watchlistItem!!)
+        watchlistItemViewState = WatchlistItemViewState(watchlistItem!!)
     }
 
     @Test
     fun getName() {
-        Assert.assertEquals("Matrix", watchlistViewState!!.getName())
+        Assert.assertEquals("Matrix", watchlistItemViewState!!.getName())
     }
 
     @Test
     fun getIcon() {
-        Assert.assertEquals(R.drawable.ic_movie, watchlistViewState!!.getIcon())
+        Assert.assertEquals(R.drawable.ic_movie, watchlistItemViewState!!.getIcon())
     }
 
     @After

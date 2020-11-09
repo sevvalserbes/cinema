@@ -21,9 +21,8 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="ButtonAppearance" parent="Widget.AppCompat.Button">
-        <item name="rippleColor">@color/white</item>
-        <item name="android:textColor">@color/colorAccent</item>
+    <style name="ButtonAppearance" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/quicksand_bold</item>
         <item name="android:includeFontPadding">false</item>
     </style>

@@ -6,7 +6,7 @@ import com.ss.cinema.domain.model.WatchlistItem
 import io.reactivex.rxjava3.core.Completable
 import javax.inject.Inject
 
-class InsertMovieToWatchlistUseCase @Inject constructor(
+class InsertItemToWatchlistUseCase @Inject constructor(
     private val watchlistRepository: WatchlistRepository,
     private val mapper: WatchlistEntityMapper
 ) {

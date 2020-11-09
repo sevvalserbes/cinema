@@ -10,13 +10,13 @@ import com.ss.cinema.domain.model.MovieDetail
 import com.ss.cinema.domain.model.WatchlistItem
 import com.ss.cinema.domain.usecase.CheckIfItemIsInWatchlistUseCase
 import com.ss.cinema.domain.usecase.FetchMovieDetailUseCase
-import com.ss.cinema.domain.usecase.InsertMovieToWatchlistUseCase
+import com.ss.cinema.domain.usecase.InsertItemToWatchlistUseCase
 import com.ss.cinema.util.mediatype.MediaType
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class MovieDetailViewModel @ViewModelInject constructor(
     private val fetchMovieDetailUseCase: FetchMovieDetailUseCase,
-    private val insertMovieToWatchlistUseCase: InsertMovieToWatchlistUseCase,
+    private val insertItemToWatchlistUseCase: InsertItemToWatchlistUseCase,
     private val checkIfItemIsInWatchlistUseCase: CheckIfItemIsInWatchlistUseCase
 ) : ViewModel() {
 
@@ -60,7 +60,7 @@ class MovieDetailViewModel @ViewModelInject constructor(
             _movieDetail.value?.originalTitle.orEmpty(),
             MediaType.MOVIE
         )
-        insertMovieToWatchlistUseCase.insertMovieToWatchlist(watchlistItem)
+        insertItemToWatchlistUseCase.insertMovieToWatchlist(watchlistItem)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _showToastMessage.value = true

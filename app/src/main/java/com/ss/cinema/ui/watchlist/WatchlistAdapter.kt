@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ss.cinema.databinding.ListItemWatchlistBinding
 import com.ss.cinema.domain.model.WatchlistItem
-import com.ss.cinema.domain.viewstate.WatchlistViewState
+import com.ss.cinema.domain.viewstate.WatchlistItemViewState
 import javax.inject.Inject
 
 class WatchlistAdapter @Inject constructor() :
@@ -28,7 +28,7 @@ class WatchlistAdapter @Inject constructor() :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: WatchlistItem) {
             with(binding) {
-                viewState = WatchlistViewState(item)
+                viewState = WatchlistItemViewState(item)
                 executePendingBindings()
             }
         }

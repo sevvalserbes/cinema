@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ss.cinema.databinding.FragmentWatchlistBinding
+import com.ss.cinema.domain.viewstate.WatchlistViewState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,6 +41,7 @@ class WatchlistFragment : Fragment() {
 
     private fun subscribeUi() {
         viewModel.watchlistItems.observe(viewLifecycleOwner) { watchlistItems ->
+            binding.viewState = WatchlistViewState(watchlistItems.size)
             watchlistAdapter.submitList(watchlistItems)
         }
     }
