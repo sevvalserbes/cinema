@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.ss.cinema.R
 import com.ss.cinema.databinding.FragmentTvSeriesDetailBinding
 import com.ss.cinema.domain.viewstate.TvSeriesDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +50,7 @@ class TvSeriesDetailFragment : Fragment() {
                 if (this.isChecked) {
                     Toast.makeText(
                         context,
-                        "Added to the watchlist!",
+                        getString(R.string.added_to_watchlist),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
