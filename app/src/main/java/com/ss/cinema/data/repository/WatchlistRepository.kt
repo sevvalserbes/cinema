@@ -24,4 +24,9 @@ class WatchlistRepository @Inject constructor(
         return watchlistDao.get(itemId.toLong())
             .subscribeOn(Schedulers.io())
     }
+
+    fun clearWatchlist(): Completable {
+        return watchlistDao.clear()
+            .subscribeOn(Schedulers.io())
+    }
 }

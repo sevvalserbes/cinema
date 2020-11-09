@@ -81,7 +81,7 @@ class CinemaDatabaseTest {
             mediaType = "movie"
         )
         watchlistDao.insert(movie).blockingAwait()
-        watchlistDao.clear()
+        watchlistDao.clear().blockingAwait()
         watchlistDao.get(3)
             .test()
             .assertNoValues()

@@ -19,7 +19,7 @@ interface WatchlistDao {
     fun get(key: Long): Flowable<WatchlistEntity?>
 
     @Query("DELETE FROM watchlist_table")
-    fun clear()
+    fun clear(): Completable
 
     @Transaction
     @Query("SELECT * FROM watchlist_table")

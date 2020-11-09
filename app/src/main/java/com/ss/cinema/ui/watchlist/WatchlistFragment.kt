@@ -28,6 +28,7 @@ class WatchlistFragment : Fragment() {
         val view = binding.root
         initWatchlistAdapter()
         subscribeUi()
+        initClearButtonOnClick()
         return view
     }
 
@@ -40,6 +41,14 @@ class WatchlistFragment : Fragment() {
     private fun subscribeUi() {
         viewModel.watchlistItems.observe(viewLifecycleOwner) { watchlistItems ->
             watchlistAdapter.submitList(watchlistItems)
+        }
+    }
+
+    private fun initClearButtonOnClick() {
+        with(binding.buttonWatchlistClear) {
+            setOnClickListener {
+                viewModel.clearWatchlist()
+            }
         }
     }
 }

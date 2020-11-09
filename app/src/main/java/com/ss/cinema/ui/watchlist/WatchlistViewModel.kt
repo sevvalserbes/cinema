@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ss.cinema.domain.model.WatchlistItem
+import com.ss.cinema.domain.usecase.ClearWatchlistUseCase
 import com.ss.cinema.domain.usecase.FetchWatchlistItemsUseCase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class WatchlistViewModel @ViewModelInject constructor(
-    private val fetchWatchlistItemsUseCase: FetchWatchlistItemsUseCase
+    private val fetchWatchlistItemsUseCase: FetchWatchlistItemsUseCase,
+    private val clearWatchlistUseCase: ClearWatchlistUseCase
 ) : ViewModel() {
 
     init {
@@ -26,5 +28,11 @@ class WatchlistViewModel @ViewModelInject constructor(
             .subscribe {
                 _watchlistItems.value = it
             }
+    }
+
+    fun clearWatchlist() {
+        clearWatchlistUseCase.clearWatchlist()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 }

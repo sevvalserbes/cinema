@@ -21,6 +21,13 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="ButtonAppearance" parent="Widget.AppCompat.Button">
+        <item name="rippleColor">@color/white</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <style name="BottomNavigationItemTextAppearance" parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/quicksand_semibold</item>
     </style>
