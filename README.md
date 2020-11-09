@@ -54,13 +54,13 @@ The project has a single-activity architecture and uses MVVM architectural patte
 
 Movie screen displays the latest popular movies. This screen is also the starting point of the app. When user clicks on a movie on the list, Movie Detail screen fetches the related movie information and displays it.
 
-![](https://media.giphy.com/media/zEkFFVGiVzKAKakURU/giphy.gif) ![](https://media.giphy.com/media/Atk7VSj9Zxd4Hy8dsN/giphy.gif)
+![](https://media.giphy.com/media/Icma3CACCzZ9kq8sUP/giphy.gif) ![](https://media.giphy.com/media/bINF41CQsHYfvoE9Cs/giphy.gif)
 
 ### TV Series and TV Series Detail screens
 
 TV Series screen displays the latest popular TV series. User is directed to the TV Series Detail screen in a similar way to the Movie Detail screen. 
 
-![](https://media.giphy.com/media/OS7DQRZPzykc1oiapd/giphy.gif) ![](https://media.giphy.com/media/jeBbXB7gtlScj9xPwZ/giphy.gif)
+![](https://media.giphy.com/media/EbScErenMoPnuFCOeX/giphy.gif) ![](https://media.giphy.com/media/HzdnlAtQhQ0qwoNyHk/giphy.gif)
 
 ### Search screen
 
@@ -68,7 +68,7 @@ Search screen is quite self explanatory. :blush: Users are allowed to make searc
 
 The search result includes three types of items: movies, TV series and people. These items can be distinguished according to the icons they have. When the user clicks on a movie item, the user is directed to the Movie Detail screen. If the user clicks on a TV series item, then the user will be directed to the TV Series Detail screen.
 
-![](https://media.giphy.com/media/lx7oJP8V7yyK7IQMvf/giphy.gif) ![](https://media.giphy.com/media/FkCOCECMcG4zLtEwdG/giphy.gif)
+![](https://media.giphy.com/media/cU747JHw6aYaaUE3pS/giphy.gif) ![](https://media.giphy.com/media/NKDopTus37ePnst8WA/giphy.gif)
 
 
 ## Some of the questions this project might have the answers for
