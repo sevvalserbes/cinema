@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.ss.cinema.R
 import com.ss.cinema.databinding.FragmentMovieDetailBinding
 import com.ss.cinema.domain.viewstate.MovieDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ class MovieDetailFragment : Fragment() {
         fetchMovieDetail()
         subscribeUi()
         initCheckBoxOnClick()
+        showToastMessage()
         return binding.root
     }
 
@@ -47,12 +49,21 @@ class MovieDetailFragment : Fragment() {
         with(binding.checkboxMovieDetail) {
             setOnClickListener {
                 if (this.isChecked) {
-                    Toast.makeText(
-                        context,
-                        "Added to the watchlist!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    viewModel.insertMovieToWatchlist(args.movieId)
                 }
+            }
+        }
+    }
+
+    private fun showToastMessage() {
+        viewModel.showToastMessage.observe(viewLifecycleOwner) {
+            if (it == true) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.added_to_watchlist),
+                    Toast.LENGTH_SHORT
+                ).show()
+                viewModel.doneShowingToast()
             }
         }
     }

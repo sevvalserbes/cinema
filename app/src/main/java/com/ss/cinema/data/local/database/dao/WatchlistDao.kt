@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.core.Flowable
 @Dao
 interface WatchlistDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(watchlistEntity: WatchlistEntity): Completable
 
     @Update
