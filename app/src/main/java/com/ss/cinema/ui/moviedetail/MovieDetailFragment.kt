@@ -28,11 +28,16 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMovieDetailBinding.inflate(inflater)
+        checkIfMovieIsInWatchlist()
         fetchMovieDetail()
         subscribeUi()
         initCheckBoxOnClick()
         showToastMessage()
         return binding.root
+    }
+
+    private fun checkIfMovieIsInWatchlist() {
+        viewModel.checkIfMovieIsInWatchlist(args.movieId)
     }
 
     private fun fetchMovieDetail() {
@@ -42,6 +47,12 @@ class MovieDetailFragment : Fragment() {
     private fun subscribeUi() {
         viewModel.movieDetail.observe(viewLifecycleOwner) {
             binding.viewState = MovieDetailViewState(it)
+        }
+
+        viewModel.isMovieInWatchlist.observe(viewLifecycleOwner) {
+            if (it == true) {
+                binding.checkboxMovieDetail.isChecked = true
+            }
         }
     }
 

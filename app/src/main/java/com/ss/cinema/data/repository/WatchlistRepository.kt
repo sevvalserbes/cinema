@@ -19,4 +19,9 @@ class WatchlistRepository @Inject constructor(
         return watchlistDao.insert(watchlistEntity)
             .subscribeOn(Schedulers.io())
     }
+
+    fun getWatchlistItem(itemId: Int): Flowable<WatchlistEntity?> {
+        return watchlistDao.get(itemId.toLong())
+            .subscribeOn(Schedulers.io())
+    }
 }

@@ -8,6 +8,7 @@ import com.ss.cinema.data.Resource
 import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.MovieDetail
 import com.ss.cinema.domain.model.WatchlistItem
+import com.ss.cinema.domain.usecase.CheckIfItemIsInWatchlistUseCase
 import com.ss.cinema.domain.usecase.FetchMovieDetailUseCase
 import com.ss.cinema.domain.usecase.InsertMovieToWatchlistUseCase
 import com.ss.cinema.util.mediatype.MediaType
@@ -15,7 +16,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class MovieDetailViewModel @ViewModelInject constructor(
     private val fetchMovieDetailUseCase: FetchMovieDetailUseCase,
-    private val insertMovieToWatchlistUseCase: InsertMovieToWatchlistUseCase
+    private val insertMovieToWatchlistUseCase: InsertMovieToWatchlistUseCase,
+    private val checkIfItemIsInWatchlistUseCase: CheckIfItemIsInWatchlistUseCase
 ) : ViewModel() {
 
     private val _movieDetail = MutableLiveData<MovieDetail>()
@@ -25,6 +27,20 @@ class MovieDetailViewModel @ViewModelInject constructor(
     private val _showToastMessage = MutableLiveData<Boolean>()
     val showToastMessage: LiveData<Boolean>
         get() = _showToastMessage
+
+    private val _isMovieInWatchlist = MutableLiveData<Boolean>()
+    val isMovieInWatchlist: LiveData<Boolean>
+        get() = _isMovieInWatchlist
+
+    fun checkIfMovieIsInWatchlist(movieId: Int) {
+        checkIfItemIsInWatchlistUseCase.checkIfItemIsInWatchlist(movieId)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                it?.let {
+                    _isMovieInWatchlist.value = true
+                }
+            }
+    }
 
     fun fetchMovieDetail(movieId: Int) {
         fetchMovieDetailUseCase.fetchMovieDetail(movieId)
