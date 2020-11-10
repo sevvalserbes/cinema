@@ -9,6 +9,7 @@ import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.MovieDetail
 import com.ss.cinema.domain.model.WatchlistItem
 import com.ss.cinema.domain.usecase.CheckIfItemIsInWatchlistUseCase
+import com.ss.cinema.domain.usecase.DeleteWatchlistItemUseCase
 import com.ss.cinema.domain.usecase.FetchMovieDetailUseCase
 import com.ss.cinema.domain.usecase.InsertItemToWatchlistUseCase
 import com.ss.cinema.util.mediatype.MediaType
@@ -17,16 +18,21 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 class MovieDetailViewModel @ViewModelInject constructor(
     private val fetchMovieDetailUseCase: FetchMovieDetailUseCase,
     private val insertItemToWatchlistUseCase: InsertItemToWatchlistUseCase,
-    private val checkIfItemIsInWatchlistUseCase: CheckIfItemIsInWatchlistUseCase
+    private val checkIfItemIsInWatchlistUseCase: CheckIfItemIsInWatchlistUseCase,
+    private val deleteWatchlistItemUseCase: DeleteWatchlistItemUseCase
 ) : ViewModel() {
 
     private val _movieDetail = MutableLiveData<MovieDetail>()
     val movieDetail: LiveData<MovieDetail>
         get() = _movieDetail
 
-    private val _showToastMessage = MutableLiveData<Boolean>()
-    val showToastMessage: LiveData<Boolean>
-        get() = _showToastMessage
+    private val _showItemAddedToastMessage = MutableLiveData<Boolean>()
+    val showItemAddedToastMessage: LiveData<Boolean>
+        get() = _showItemAddedToastMessage
+
+    private val _showItemDeletedToastMessage = MutableLiveData<Boolean>()
+    val showItemDeletedToastMessage: LiveData<Boolean>
+        get() = _showItemDeletedToastMessage
 
     private val _isMovieInWatchlist = MutableLiveData<Boolean>()
     val isMovieInWatchlist: LiveData<Boolean>
@@ -55,19 +61,32 @@ class MovieDetailViewModel @ViewModelInject constructor(
     }
 
     fun insertMovieToWatchlist(movieId: Int) {
-        val watchlistItem = WatchlistItem(
-            movieId,
-            _movieDetail.value?.originalTitle.orEmpty(),
-            MediaType.MOVIE
-        )
-        insertItemToWatchlistUseCase.insertMovieToWatchlist(watchlistItem)
+        insertItemToWatchlistUseCase.insertMovieToWatchlist(getWatchlistItem(movieId))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                _showToastMessage.value = true
+                _showItemAddedToastMessage.value = true
             }
     }
 
-    fun doneShowingToast() {
-        _showToastMessage.value = false
+    fun deleteMovieFromWatchlist(movieId: Int) {
+        deleteWatchlistItemUseCase.deleteWatchlistItem(getWatchlistItem(movieId))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                _showItemDeletedToastMessage.value = true
+            }
+    }
+
+    private fun getWatchlistItem(movieId: Int) = WatchlistItem(
+        movieId,
+        _movieDetail.value?.originalTitle.orEmpty(),
+        MediaType.MOVIE
+    )
+
+    fun doneShowingItemAddedToast() {
+        _showItemAddedToastMessage.value = false
+    }
+
+    fun doneShowingItemDeletedToast() {
+        _showItemDeletedToastMessage.value = false
     }
 }

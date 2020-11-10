@@ -29,4 +29,9 @@ class WatchlistRepository @Inject constructor(
         return watchlistDao.clear()
             .subscribeOn(Schedulers.io())
     }
+
+    fun deleteWatchlistItem(watchlistEntity: WatchlistEntity): Completable {
+        return watchlistDao.delete(watchlistEntity)
+            .subscribeOn(Schedulers.io())
+    }
 }

@@ -32,7 +32,8 @@ class MovieDetailFragment : Fragment() {
         fetchMovieDetail()
         subscribeUi()
         initCheckBoxOnClick()
-        showToastMessage()
+        observeItemAddedToastMessage()
+        observeItemDeletedToastMessage()
         return binding.root
     }
 
@@ -61,21 +62,36 @@ class MovieDetailFragment : Fragment() {
             setOnClickListener {
                 if (this.isChecked) {
                     viewModel.insertMovieToWatchlist(args.movieId)
+                } else {
+                    viewModel.deleteMovieFromWatchlist(args.movieId)
                 }
             }
         }
     }
 
-    private fun showToastMessage() {
-        viewModel.showToastMessage.observe(viewLifecycleOwner) {
+    private fun observeItemAddedToastMessage() {
+        viewModel.showItemAddedToastMessage.observe(viewLifecycleOwner) {
             if (it == true) {
-                Toast.makeText(
-                    context,
-                    getString(R.string.added_to_watchlist),
-                    Toast.LENGTH_SHORT
-                ).show()
-                viewModel.doneShowingToast()
+                showToast(getString(R.string.added_to_watchlist))
+                viewModel.doneShowingItemAddedToast()
             }
         }
+    }
+
+    private fun observeItemDeletedToastMessage() {
+        viewModel.showItemDeletedToastMessage.observe(viewLifecycleOwner) {
+            if (it == true) {
+                showToast(getString(R.string.removed_from_watchlist))
+                viewModel.doneShowingItemDeletedToast()
+            }
+        }
+    }
+
+    private fun showToast(toastMessage: String) {
+        Toast.makeText(
+            context,
+            toastMessage,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

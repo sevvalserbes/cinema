@@ -21,6 +21,9 @@ interface WatchlistDao {
     @Query("DELETE FROM watchlist_table")
     fun clear(): Completable
 
+    @Delete
+    fun delete(watchlistEntity: WatchlistEntity): Completable
+
     @Transaction
     @Query("SELECT * FROM watchlist_table")
     fun getAllNights(): Flowable<List<WatchlistEntity>>
