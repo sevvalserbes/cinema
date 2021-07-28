@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewState"
             type="com.ss.cinema.domain.viewstate.WatchlistViewState" />
@@ -49,7 +48,7 @@
             android:id="@+id/view_border"
             android:layout_width="0dp"
             android:layout_height="4dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/recycler_view_watchlist"
             app:layout_constraintEnd_toEndOf="@id/text_view_watchlist_title"
             app:layout_constraintStart_toStartOf="@id/text_view_watchlist_title"

@@ -83,7 +83,7 @@
                 android:layout_marginStart="4dp"
                 android:fontFamily="@font/quicksand_medium"
                 android:text="@{viewState.releaseDate}"
-                android:textColor="@color/colorAccentLight"
+                android:textColor="@color/colorSecondary"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/image_view_movie_calendar"
                 app:layout_constraintEnd_toEndOf="parent"

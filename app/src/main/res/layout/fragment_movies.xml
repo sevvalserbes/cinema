@@ -27,7 +27,7 @@
             android:id="@+id/view_border"
             android:layout_width="0dp"
             android:layout_height="4dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/recycler_view_movies"
             app:layout_constraintEnd_toEndOf="@id/text_view_movies_title"
             app:layout_constraintStart_toStartOf="@id/text_view_movies_title"
