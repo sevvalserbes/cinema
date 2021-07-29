@@ -10,11 +10,11 @@ class CheckIfItemIsInWatchlistUseCase @Inject constructor(
     private val watchlistRepository: WatchlistRepository,
     private val decider: MediaTypeDecider
 ) {
-    fun checkIfItemIsInWatchlist(itemId: Int): Flowable<WatchlistItem> {
+    fun checkIfItemIsInWatchlist(itemId: String): Flowable<WatchlistItem> {
         return watchlistRepository.getWatchlistItem(itemId)
             .map {
                 WatchlistItem(
-                    id = it?.id ?: -1,
+                    id = it?.id.orEmpty(),
                     name = it?.name.orEmpty(),
                     mediaType = decider.getMediaType(it?.mediaType)
                 )

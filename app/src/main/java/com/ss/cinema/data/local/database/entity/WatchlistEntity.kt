@@ -7,9 +7,11 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "watchlist_table")
 data class WatchlistEntity(
     @ColumnInfo(name = "watchlist_item_id") @PrimaryKey
-    var id: Int = 0,
+    var id: String = "0",
     @ColumnInfo(name = "watchlist_item_name")
     var name: String = "item",
     @ColumnInfo(name = "watchlist_item_media_type")
-    var mediaType: String = "movie"
+    var mediaType: String = "other",
+    @ColumnInfo(name = "watchlist_item_added_date")
+    var addedDate: String
 )

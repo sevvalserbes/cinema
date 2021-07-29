@@ -10,7 +10,7 @@ class InsertItemToWatchlistUseCase @Inject constructor(
     private val watchlistRepository: WatchlistRepository,
     private val mapper: WatchlistEntityMapper
 ) {
-    fun insertMovieToWatchlist(watchlistItem: WatchlistItem): Completable {
+    fun insertItemToWatchlist(watchlistItem: WatchlistItem): Completable {
         return watchlistRepository.insertWatchlistItem(mapper.mapFrom(watchlistItem))
     }
 }

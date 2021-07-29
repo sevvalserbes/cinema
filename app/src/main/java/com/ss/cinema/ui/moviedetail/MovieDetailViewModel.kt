@@ -14,6 +14,7 @@ import com.ss.cinema.domain.usecase.FetchMovieDetailUseCase
 import com.ss.cinema.domain.usecase.InsertItemToWatchlistUseCase
 import com.ss.cinema.util.mediatype.MediaType
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import java.util.*
 
 class MovieDetailViewModel @ViewModelInject constructor(
     private val fetchMovieDetailUseCase: FetchMovieDetailUseCase,
@@ -39,7 +40,7 @@ class MovieDetailViewModel @ViewModelInject constructor(
         get() = _isMovieInWatchlist
 
     fun checkIfMovieIsInWatchlist(movieId: Int) {
-        checkIfItemIsInWatchlistUseCase.checkIfItemIsInWatchlist(movieId)
+        checkIfItemIsInWatchlistUseCase.checkIfItemIsInWatchlist("M$movieId")
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 it?.let {
@@ -61,7 +62,7 @@ class MovieDetailViewModel @ViewModelInject constructor(
     }
 
     fun insertMovieToWatchlist(movieId: Int) {
-        insertItemToWatchlistUseCase.insertMovieToWatchlist(getWatchlistItem(movieId))
+        insertItemToWatchlistUseCase.insertItemToWatchlist(getWatchlistItem(movieId))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _showItemAddedToastMessage.value = true
@@ -77,9 +78,10 @@ class MovieDetailViewModel @ViewModelInject constructor(
     }
 
     private fun getWatchlistItem(movieId: Int) = WatchlistItem(
-        movieId,
+        "M$movieId",
         _movieDetail.value?.originalTitle.orEmpty(),
-        MediaType.MOVIE
+        MediaType.MOVIE,
+        Calendar.getInstance().time
     )
 
     fun doneShowingItemAddedToast() {
