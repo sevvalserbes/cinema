@@ -3,6 +3,7 @@ package com.ss.cinema.domain.mapper
 import com.ss.cinema.data.local.database.entity.WatchlistEntity
 import com.ss.cinema.domain.model.WatchlistItem
 import com.ss.cinema.util.extensions.getName
+import java.util.*
 import javax.inject.Inject
 
 class WatchlistEntityMapper @Inject constructor() :
@@ -11,7 +12,8 @@ class WatchlistEntityMapper @Inject constructor() :
         return WatchlistEntity(
             id = response.id,
             name = response.name,
-            mediaType = response.mediaType.getName()
+            mediaType = response.mediaType.getName(),
+            addedDate = if (response.addedDate == null) Date().toString() else response.addedDate.toString()
         )
     }
 }

@@ -16,7 +16,7 @@ interface WatchlistDao {
 
     @Transaction
     @Query(value = "SELECT * from watchlist_table WHERE watchlist_item_id = :key")
-    fun get(key: Long): Flowable<WatchlistEntity?>
+    fun get(key: String): Flowable<WatchlistEntity?>
 
     @Query("DELETE FROM watchlist_table")
     fun clear(): Completable
@@ -25,6 +25,6 @@ interface WatchlistDao {
     fun delete(watchlistEntity: WatchlistEntity): Completable
 
     @Transaction
-    @Query("SELECT * FROM watchlist_table")
-    fun getAllNights(): Flowable<List<WatchlistEntity>>
+    @Query("SELECT * FROM watchlist_table ORDER BY watchlist_item_added_date DESC")
+    fun getAllWatchlistItems(): Flowable<List<WatchlistEntity>>
 }

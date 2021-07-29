@@ -11,7 +11,7 @@ class WatchlistRepository @Inject constructor(
     private val watchlistDao: WatchlistDao
 ) {
     fun fetchWatchlistItems(): Flowable<List<WatchlistEntity>> {
-        return watchlistDao.getAllNights()
+        return watchlistDao.getAllWatchlistItems()
             .subscribeOn(Schedulers.io())
     }
 
@@ -20,8 +20,8 @@ class WatchlistRepository @Inject constructor(
             .subscribeOn(Schedulers.io())
     }
 
-    fun getWatchlistItem(itemId: Int): Flowable<WatchlistEntity?> {
-        return watchlistDao.get(itemId.toLong())
+    fun getWatchlistItem(itemId: String): Flowable<WatchlistEntity?> {
+        return watchlistDao.get(itemId)
             .subscribeOn(Schedulers.io())
     }
 

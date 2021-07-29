@@ -12,7 +12,8 @@ class WatchlistItemMapper @Inject constructor(private val decider: MediaTypeDeci
             WatchlistItem(
                 id = it.id,
                 name = it.name,
-                mediaType = decider.getMediaType(it.mediaType))
+                mediaType = decider.getMediaType(it.mediaType)
+            )
         }
     }
 }

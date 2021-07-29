@@ -26,12 +26,19 @@ class TvSeriesDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTvSeriesDetailBinding.inflate(inflater)
+        checkIfTvSeriesIsInWatchlist()
         fetchTvSeriesDetail()
         subscribeUi()
         initCheckBoxOnClick()
+        observeItemAddedToastMessage()
+        observeItemDeletedToastMessage()
         return binding.root
+    }
+
+    private fun checkIfTvSeriesIsInWatchlist() {
+        viewModel.checkIfTvSeriesIsInWatchlist(args.tvSeriesId)
     }
 
     private fun fetchTvSeriesDetail() {
@@ -42,19 +49,49 @@ class TvSeriesDetailFragment : Fragment() {
         viewModel.tvSeriesDetail.observe(viewLifecycleOwner) {
             binding.viewState = TvSeriesDetailViewState(it)
         }
+
+        viewModel.isTvSeriesInWatchlist.observe(viewLifecycleOwner) {
+            if (it == true) {
+                binding.checkboxTvSeriesDetail.isChecked = true
+            }
+        }
     }
 
     private fun initCheckBoxOnClick() {
         with(binding.checkboxTvSeriesDetail) {
             setOnClickListener {
                 if (this.isChecked) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.added_to_watchlist),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    viewModel.insertTvSeriesToWatchlist(args.tvSeriesId)
+                } else {
+                    viewModel.deleteTvSeriesFromWatchlist(args.tvSeriesId)
                 }
             }
         }
+    }
+
+    private fun observeItemAddedToastMessage() {
+        viewModel.showItemAddedToastMessage.observe(viewLifecycleOwner) {
+            if (it == true) {
+                showToast(getString(R.string.added_to_watchlist))
+                viewModel.doneShowingItemAddedToast()
+            }
+        }
+    }
+
+    private fun observeItemDeletedToastMessage() {
+        viewModel.showItemDeletedToastMessage.observe(viewLifecycleOwner) {
+            if (it == true) {
+                showToast(getString(R.string.removed_from_watchlist))
+                viewModel.doneShowingItemDeletedToast()
+            }
+        }
+    }
+
+    private fun showToast(toastMessage: String) {
+        Toast.makeText(
+            context,
+            toastMessage,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
