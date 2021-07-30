@@ -1,6 +1,5 @@
 package com.ss.cinema.ui.tvseriesdetail
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,11 +12,14 @@ import com.ss.cinema.domain.usecase.DeleteWatchlistItemUseCase
 import com.ss.cinema.domain.usecase.FetchTvSeriesDetailUseCase
 import com.ss.cinema.domain.usecase.InsertItemToWatchlistUseCase
 import com.ss.cinema.util.mediatype.MediaType
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.*
+import javax.inject.Inject
 
-class TvSeriesDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class TvSeriesDetailViewModel @Inject constructor(
     private val fetchTvSeriesDetailUseCase: FetchTvSeriesDetailUseCase,
     private val checkIfItemIsInWatchlistUseCase: CheckIfItemIsInWatchlistUseCase,
     private val insertItemToWatchlistUseCase: InsertItemToWatchlistUseCase,

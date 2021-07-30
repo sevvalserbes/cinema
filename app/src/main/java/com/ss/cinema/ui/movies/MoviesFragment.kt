@@ -24,7 +24,7 @@ class MoviesFragment : Fragment(), MovieHandler {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMoviesBinding.inflate(inflater)
         val view = binding.root
         initPopularMovieAdapter()

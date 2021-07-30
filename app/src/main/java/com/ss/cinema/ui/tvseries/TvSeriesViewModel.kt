@@ -1,6 +1,5 @@
 package com.ss.cinema.ui.tvseries
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ss.cinema.data.Resource
@@ -8,9 +7,12 @@ import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.TvSeries
 import com.ss.cinema.domain.usecase.FetchPopularTvSeriesUseCase
 import com.ss.cinema.util.ReactiveViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
 
-class TvSeriesViewModel @ViewModelInject constructor(
+@HiltViewModel
+class TvSeriesViewModel @Inject constructor(
     private val fetchPopularTvSeriesUseCase: FetchPopularTvSeriesUseCase
 ) : ReactiveViewModel() {
 

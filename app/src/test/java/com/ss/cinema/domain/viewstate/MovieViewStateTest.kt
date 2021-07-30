@@ -1,51 +1,69 @@
 package com.ss.cinema.domain.viewstate
 
 import com.ss.cinema.domain.model.Movie
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-class MovieViewStateTest {
+@RunWith(value = Parameterized::class)
+class MovieViewStateTest(
 
-    private var movie: Movie? = null
-    private var movieViewState: MovieViewState? = null
+    private val expectedTitle: String,
+    private val expectedPosterPath: String,
+    private val expectedVote: String,
+    private val expectedReleaseDate: String,
+    private val movie: Movie
+) {
+
+    private lateinit var movieViewState: MovieViewState
 
     @Before
     fun setUp() {
-        movie = Movie(
-            id = 0,
-            originalTitle = "Memento",
-            posterPath = "posterPath",
-            voteAverage = 9.3,
-            releaseDate = "releaseDate"
-        )
-        movieViewState = MovieViewState(movie!!)
+        movieViewState = MovieViewState(movie)
+    }
+
+    companion object {
+
+        @JvmStatic
+        @Parameterized.Parameters
+        fun data(): Iterable<Array<Any?>> {
+            return arrayListOf(
+                arrayOf(
+                    "Memento",
+                    "posterPath",
+                    "9.3",
+                    "2018",
+                    Movie(
+                        id = 0,
+                        originalTitle = "Memento",
+                        posterPath = "posterPath",
+                        voteAverage = 9.3,
+                        releaseDate = "2018"
+                    )
+                )
+            )
+        }
     }
 
     @Test
     fun `given MovieViewState created, then get originalTitle`() {
-        assertEquals("Memento", movieViewState!!.getOriginalTitle())
+        assertEquals(expectedTitle, movieViewState.getOriginalTitle())
     }
 
     @Test
     fun `given MovieViewState created, then get posterPath`() {
-        assertEquals("posterPath", movieViewState!!.getPosterImageUrl())
+        assertEquals(expectedPosterPath, movieViewState.getPosterImageUrl())
     }
 
     @Test
     fun `given MovieViewState created, then get voteAverage`() {
-        assertEquals("9.3", movieViewState!!.getVoteAverage())
+        assertEquals(expectedVote, movieViewState.getVoteAverage())
     }
 
     @Test
     fun `given MovieViewState created, then get releaseDate`() {
-        assertEquals("releaseDate", movieViewState!!.getReleaseDate())
-    }
-
-    @After
-    fun tearDown() {
-        movie = null
-        movieViewState = null
+        assertEquals(expectedReleaseDate, movieViewState.getReleaseDate())
     }
 }

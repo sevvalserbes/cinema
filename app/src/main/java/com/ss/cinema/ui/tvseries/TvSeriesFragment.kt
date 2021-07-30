@@ -24,7 +24,7 @@ class TvSeriesFragment : Fragment(), TvSeriesHandler {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTvSeriesBinding.inflate(inflater)
         val view = binding.root
         initPopularTvSeriesAdapter()

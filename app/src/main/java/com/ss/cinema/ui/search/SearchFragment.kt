@@ -13,7 +13,6 @@ import com.ss.cinema.util.mediatype.MediaType
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableOnSubscribe
-import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -30,7 +29,7 @@ class SearchFragment : Fragment(), SearchHandler {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSearchBinding.inflate(inflater)
         val view = binding.root
         initSearchViewOnQueryListener()
@@ -56,7 +55,7 @@ class SearchFragment : Fragment(), SearchHandler {
                 })
             })
             .map { queryValue ->
-                queryValue.toLowerCase(Locale.getDefault()).trim()
+                queryValue.lowercase().trim()
             }
             .debounce(250, TimeUnit.MILLISECONDS)
             .filter { queryValue -> queryValue.length > 2 }
@@ -97,6 +96,7 @@ class SearchFragment : Fragment(), SearchHandler {
                     SearchFragmentDirections.actionSearchFragmentToTvSeriesDetailFragment(itemId)
                 findNavController().navigate(directions)
             }
+            else -> return
         }
     }
 }

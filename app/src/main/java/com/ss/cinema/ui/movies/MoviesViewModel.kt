@@ -1,6 +1,5 @@
 package com.ss.cinema.ui.movies
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,9 +7,12 @@ import com.ss.cinema.data.Resource
 import com.ss.cinema.data.map
 import com.ss.cinema.domain.model.Movie
 import com.ss.cinema.domain.usecase.FetchPopularMoviesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
 
-class MoviesViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MoviesViewModel @Inject constructor(
     private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
 ) : ViewModel() {
 

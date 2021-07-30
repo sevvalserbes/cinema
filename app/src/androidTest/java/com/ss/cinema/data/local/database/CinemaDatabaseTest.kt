@@ -42,12 +42,13 @@ class CinemaDatabaseTest {
     @Throws(Exception::class)
     fun insertAndGetWatchlistItem() {
         val watchlistItem = WatchlistEntity(
-            1,
+            "1",
             "Matrix",
-            "movie"
+            "movie",
+            "2018-03-04"
         )
         watchlistDao.insert(watchlistItem).blockingAwait()
-        watchlistDao.get(1)
+        watchlistDao.get("1")
             .test()
             .assertValue { it?.name == "Matrix" }
     }
@@ -57,18 +58,20 @@ class CinemaDatabaseTest {
     @Throws(Exception::class)
     fun updateAndGetWatchlistItem() {
         var movie = WatchlistEntity(
-            id = 2,
+            id = "2",
             name = "Memento",
-            mediaType = "movie"
+            mediaType = "movie",
+            addedDate = "2018-03-04"
         )
         watchlistDao.insert(movie).blockingAwait()
         movie = WatchlistEntity(
-            id = 2,
+            id = "2",
             name = "Shrek",
-            mediaType = "movie"
+            mediaType = "movie",
+            addedDate = "2018-03-04"
         )
         watchlistDao.update(movie).blockingAwait()
-        watchlistDao.get(2)
+        watchlistDao.get("2")
             .test()
             .assertValue { it?.name == "Shrek" }
     }
@@ -76,13 +79,14 @@ class CinemaDatabaseTest {
     @Test
     fun deleteAndGetUser() {
         val movie = WatchlistEntity(
-            id = 3,
+            id = "3",
             name = "Memento",
-            mediaType = "movie"
+            mediaType = "movie",
+            addedDate = "2018-03-04"
         )
         watchlistDao.insert(movie).blockingAwait()
         watchlistDao.clear().blockingAwait()
-        watchlistDao.get(3)
+        watchlistDao.get("3")
             .test()
             .assertNoValues()
     }

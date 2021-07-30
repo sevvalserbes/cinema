@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.ss.cinema.R
 import com.ss.cinema.databinding.FragmentMovieDetailBinding
 import com.ss.cinema.domain.viewstate.MovieDetailViewState
+import com.ss.cinema.util.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class MovieDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMovieDetailBinding.inflate(inflater)
         checkIfMovieIsInWatchlist()
         fetchMovieDetail()
@@ -72,7 +73,7 @@ class MovieDetailFragment : Fragment() {
     private fun observeItemAddedToastMessage() {
         viewModel.showItemAddedToastMessage.observe(viewLifecycleOwner) {
             if (it == true) {
-                showToast(getString(R.string.added_to_watchlist))
+                context?.showToast(getString(R.string.added_to_watchlist), Toast.LENGTH_SHORT)
                 viewModel.doneShowingItemAddedToast()
             }
         }
@@ -81,17 +82,9 @@ class MovieDetailFragment : Fragment() {
     private fun observeItemDeletedToastMessage() {
         viewModel.showItemDeletedToastMessage.observe(viewLifecycleOwner) {
             if (it == true) {
-                showToast(getString(R.string.removed_from_watchlist))
+                context?.showToast(getString(R.string.removed_from_watchlist), Toast.LENGTH_SHORT)
                 viewModel.doneShowingItemDeletedToast()
             }
         }
-    }
-
-    private fun showToast(toastMessage: String) {
-        Toast.makeText(
-            context,
-            toastMessage,
-            Toast.LENGTH_SHORT
-        ).show()
     }
 }

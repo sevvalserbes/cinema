@@ -4,8 +4,7 @@ import com.ss.cinema.domain.model.WatchlistItem
 import com.ss.cinema.util.extensions.getIcon
 
 class WatchlistItemViewState(private val watchlistItem: WatchlistItem) {
-
+    fun getId() = watchlistItem.id
     fun getName() = watchlistItem.name
-
     fun getIcon() = watchlistItem.mediaType.getIcon()
 }

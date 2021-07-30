@@ -3,38 +3,55 @@ package com.ss.cinema.domain.viewstate
 import com.ss.cinema.R
 import com.ss.cinema.domain.model.WatchlistItem
 import com.ss.cinema.util.mediatype.MediaType
-import org.junit.After
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-class WatchlistItemViewStateTest {
+@RunWith(value = Parameterized::class)
+class WatchlistItemViewStateTest(
+    private val expectedId: String,
+    private val expectedName: String,
+    private val expectedIcon: Int,
+    private val watchlistItem: WatchlistItem
+) {
+    companion object {
 
-    private var watchlistItem: WatchlistItem? = null
-    private var watchlistItemViewState: WatchlistItemViewState? = null
+        @JvmStatic
+        @Parameterized.Parameters
+        fun data(): Iterable<Array<Any?>> {
+            return arrayListOf(
+                arrayOf(
+                    "1",
+                    "Matrix",
+                    R.drawable.ic_movie,
+                    WatchlistItem("1", "Matrix", MediaType.MOVIE)
+                ),
+                arrayOf(
+                    "2",
+                    "Sherlock",
+                    R.drawable.ic_tv,
+                    WatchlistItem("2", "Sherlock", MediaType.TV)
+                ),
+            )
+        }
+    }
 
-    @Before
-    fun setUp() {
-        watchlistItem = WatchlistItem(
-            id = 1,
-            name = "Matrix",
-            mediaType = MediaType.MOVIE
-        )
-        watchlistItemViewState = WatchlistItemViewState(watchlistItem!!)
+    @Test
+    fun getId() {
+        val watchlistItemViewState = WatchlistItemViewState(watchlistItem)
+        Assert.assertEquals(expectedId, watchlistItemViewState.getId())
     }
 
     @Test
     fun getName() {
-        Assert.assertEquals("Matrix", watchlistItemViewState!!.getName())
+        val watchlistItemViewState = WatchlistItemViewState(watchlistItem)
+        Assert.assertEquals(expectedName, watchlistItemViewState.getName())
     }
 
     @Test
     fun getIcon() {
-        Assert.assertEquals(R.drawable.ic_movie, watchlistItemViewState!!.getIcon())
-    }
-
-    @After
-    fun tearDown() {
-        watchlistItem = null
+        val watchlistItemViewState = WatchlistItemViewState(watchlistItem)
+        Assert.assertEquals(expectedIcon, watchlistItemViewState.getIcon())
     }
 }
