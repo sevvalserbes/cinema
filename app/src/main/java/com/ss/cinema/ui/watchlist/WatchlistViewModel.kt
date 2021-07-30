@@ -1,17 +1,19 @@
 package com.ss.cinema.ui.watchlist
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ss.cinema.domain.model.WatchlistItem
-import com.ss.cinema.domain.usecase.ClearWatchlistUseCase
+import com.ss.cinema.domain.usecase.DeleteWatchlistItemsUseCase
 import com.ss.cinema.domain.usecase.FetchWatchlistItemsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import javax.inject.Inject
 
-class WatchlistViewModel @ViewModelInject constructor(
+@HiltViewModel
+class WatchlistViewModel @Inject constructor(
     private val fetchWatchlistItemsUseCase: FetchWatchlistItemsUseCase,
-    private val clearWatchlistUseCase: ClearWatchlistUseCase
+    private val deleteWatchlistItemsUseCase: DeleteWatchlistItemsUseCase
 ) : ViewModel() {
 
     init {
@@ -31,7 +33,13 @@ class WatchlistViewModel @ViewModelInject constructor(
     }
 
     fun clearWatchlist() {
-        clearWatchlistUseCase.clearWatchlist()
+        deleteWatchlistItemsUseCase.clearWatchlist()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
+
+    fun deleteWatchlistItem(watchlistItem: WatchlistItem) {
+        deleteWatchlistItemsUseCase.deleteWatchlistItem(watchlistItem)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
     }

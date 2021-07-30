@@ -13,6 +13,8 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         android:theme="@style/Theme.MaterialComponents"
         app:cardCornerRadius="4dp"
         app:cardUseCompatPadding="true">
