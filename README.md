@@ -72,9 +72,9 @@ The search result includes three types of items: movies, TV series and people. T
 
 ### Watchlist
 
-Watchlist screen displays the items which users added to their watchlist. *At the moment, users can add only **movies** to their watchlist.* 
+Watchlist screen displays the items which users added to their watchlist.
 
-Users can add movies in their watchlist by clicking on the bookmark icon that can be seen on the top right corner of the screen. To remove the bookmarked movie, users can uncheck the bookmark by simply clicking on the icon again. In the watchlist screen, all bookmarked movies can be removed by clicking the **CLEAR** button. The button will be disabled if there are no movies in the watchlist.
+Users can add items in their watchlist by clicking on the bookmark icon that can be seen on the top right corner of the screen. To remove the bookmarked item, users can uncheck the bookmark by simply clicking on the icon again. In the watchlist screen, items can be removed by clicking the **CLEAR** button which will remove every item on the list or by sliding the items to left which will remove the selected item from the list. The button will be disabled if there are no movies in the watchlist.
 
 ![](https://media.giphy.com/media/e5yH9TeXmlQKzJhGPa/giphy.gif) ![](https://media.giphy.com/media/7S3fK9tTjgVXGFyPqN/giphy.gif)
 
