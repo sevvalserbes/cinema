@@ -80,38 +80,6 @@ Users can add movies in their watchlist by clicking on the bookmark icon that ca
 
 ## Some of the questions this project might have the answers for
 
-### How to inject a ViewModel that has parameters in its constructor to a fragment?
-
-Thanks to **Hilt** and and [**Fragment KTX**](https://developer.android.com/kotlin/ktx#fragment), this can be achieved effortlessly. Assuming you already have set up Hilt for your app, you should add Fragment KTX dependency:
-```
-dependencies {
-    implementation "androidx.fragment:fragment-ktx:<latest-version>"
-}
-```
-Then, you add **@ViewModelInject** annotation to your ViewModel's constructor. Here is an example from the project:
-```
-class MoviesViewModel @ViewModelInject constructor(
-    private val fetchPopularMoviesUseCase: FetchPopularMoviesUseCase
-)
-```
-Later, you can get an instance of your ViewModel in your fragment like this:
-
-```
-@AndroidEntryPoint
-class MoviesFragment : Fragment() {
-
-    private val viewModel by viewModels<MoviesViewModel>()
-    
-    ...
-}
-```
-
-Make sure:
-- Your fragment is annotated with **@AndroidEntryPoint** 
-- The activity that hosts your fragment is annotated with **@AndroidEntryPoint**
-- *Hilt currently only supports activities that extend ComponentActivity and fragments that extend androidx library Fragment*. So check whether your activities or fragments provide the requirements.
-- For further information: [Hilt and Jetpack integrations](https://developer.android.com/training/dependency-injection/hilt-jetpack), [Hilt Gradle Setup](https://dagger.dev/hilt/gradle-setup)
-
 ### How to pass data between fragments while using the Navigation component?
 
 I got a little bit of help from a Navigation component Gradle plugin named **Safe Args** to achieve this. Following the instructions [here](https://developer.android.com/guide/navigation/navigation-pass-data#Safe-args), you can Safe Args to your project.
@@ -161,4 +129,4 @@ Here, I point out what could be done differently. I also treat this part as a TO
 - [ ] I could've added pagination. (Bonus: I could've used the Pagination library)
 - [ ] ~I could've added a Watchlist button~ and ~a Watchlist tab on the BottomNavigationView~ so that users can display the items they added to their Watchlist.
 - [ ] I should've preserved UI state. 
-- [ ] I would've written more unit tests covering the ViewModels and UseCases. But I don't have experience with writing unit tests when asynchronous task are involved.
+- [ ] I would've written more unit tests covering the ViewModels and UseCases.
