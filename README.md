@@ -10,7 +10,7 @@ You need to create an account and register for an API key to retrieve data from 
 
 If you already have an API key, you'll need a **keys.properties** file. In your project, add a keys.properties file in your **app** folder. This is where the file is supposed to be: 
 
-<img src="https://github.com/sevvalserbes/cinema/blob/master/art/key_properties.png" height="300">
+<img src="https://github.com/sevvalserbes/cinema/blob/main/art/key_properties.png" height="300">
 In your file, set your API key:
 
 ```
@@ -87,7 +87,7 @@ I got a little bit of help from a Navigation component Gradle plugin named **Saf
 This is the navigation graph of the cinema app:
 
 <p align="center">
-  <img height="400" src="https://github.com/sevvalserbes/cinema/blob/master/art/movieDetail.png">
+  <img height="400" src="https://github.com/sevvalserbes/cinema/blob/main/art/movieDetail.png">
 </p>
 
 The arrows represent the actions between destinations. The highlighted arrows represent the actions between MovieDetailFragment and other fragments. Here, MovieDetailFragment is the destination. When the user clicks on the movie item on the list, whether in MoviesFragment or SearchFragment, the app should navigate to the MovieDetailFragment passing the id of the movie the user clicked on at the same time. 
@@ -95,7 +95,7 @@ The arrows represent the actions between destinations. The highlighted arrows re
 Because the MovieDetailFragment is the recipient of the movie id, a movieId value should be added to its arguments. When the MovieDetailFragment is selected on the navigation graph, **Arguments** show up on the **Attributes** panel. The following images show how to add an argument:
 
 <p align="center">
-    <img src="https://github.com/sevvalserbes/cinema/blob/master/art/arguments.png" height="200"> <img src="https://github.com/sevvalserbes/cinema/blob/master/art/add_argument.png" height="200">
+    <img src="https://github.com/sevvalserbes/cinema/blob/main/art/arguments.png" height="200"> <img src="https://github.com/sevvalserbes/cinema/blob/main/art/add_argument.png" height="200">
 </p>
 
 Let's take a look at the code in the MoviesFragment. onMovieClick function is called when the user clicks on a movie item on the list.
